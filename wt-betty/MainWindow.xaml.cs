@@ -11,7 +11,7 @@ namespace wt_betty
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     /// NEW BETTY
-    /// 
+    ///
     //todo: fuel warning
     //todo: eula, help,
 
@@ -40,7 +40,7 @@ namespace wt_betty
             textBox_gSlider.Text = slider_G.Value.ToString();
             tbx_gearup.Text = User.Default.GearUp.ToString();
             tbx_geardown.Text = User.Default.GearDown.ToString();
-            
+
             dispatcherTimer1.Tick += new EventHandler(dispatcherTimer1_Tick);
             dispatcherTimer1.Interval = new TimeSpan(0, 0, 0, 0, 200);
             dispatcherTimer2.Tick += new EventHandler(dispatcherTimer2_Tick);
@@ -150,40 +150,61 @@ namespace wt_betty
                     decimal G = Convert.ToDecimal(myState.Ny, culture);
                     decimal AoA = Convert.ToDecimal(myState.AoA, culture);
                     decimal Alt = Convert.ToDecimal(myIndicator.altitude_hour, culture);
+                    int Fuel = Convert.ToInt32(myState.Mfuel) * 1000;
+                    int FuelFull = Convert.ToInt32(myState.Mfuel0);
+                    int Throttle = Convert.ToInt32(Convert.ToDecimal(myIndicator.throttle, culture) * 100);
                     int gear = Convert.ToInt32(myState.gear);
                     int IAS = Convert.ToInt32(myState.IAS);
                     int flaps = Convert.ToInt32(myState.flaps);
                     label.Content = myIndicator.type;
 
+                    if (IAS > 20)//Check if we're like, y'know, in the air
+                  {//Excuse the indent, for I have a small screen
                     if (cbx_g.IsChecked == true && G > User.Default.GForce )
                     {
                         System.Media.SoundPlayer myPlayer;
-                        myPlayer = new System.Media.SoundPlayer(Properties.Resources.breaths);
+                        myPlayer = new System.Media.SoundPlayer(Properties.Resources.OverG);
                         myPlayer.PlaySync();
                     }
 
-                   
 
-                    if (AoA > User.Default.AoA && myIndicator.gears_lamp == "1" && cbx_a.IsChecked == true)
+                    if (AoA > User.Default.AoA /*&& myIndicator.gears_lamp == "1"*/ && cbx_a.IsChecked == true)
                     {
                         System.Media.SoundPlayer myPlayer;
-                        myPlayer = new System.Media.SoundPlayer(Properties.Resources.carflt_stallhorn02);
-                        myPlayer.PlaySync();
-
+                        if (AoA < User.Default.AoA + 2)
+                        {
+                          myPlayer = new System.Media.SoundPlayer(Properties.Resources.MaximumAngleOfAttack);
+                          myPlayer.PlaySync();
+                        }
+                        else
+                        {
+                          myPlayer = new System.Media.SoundPlayer(Properties.Resources.AngleOfAttackOverLimit);
+                          myPlayer.PlaySync();
+                        }//multi-layer AoA warnings as a variable-pitch isn't supported by MS's package
                     }
+
+
                     if (User.Default.EnableGear == true && gear == 100 && IAS > User.Default.GearUp)
                     {
                         System.Media.SoundPlayer myPlayer;
-                        myPlayer = new System.Media.SoundPlayer(Properties.Resources.gearwarn);
+                        myPlayer = new System.Media.SoundPlayer(Properties.Resources.GearUp);
                         myPlayer.PlaySync();
                     }
 
-                    if (User.Default.EnableGear == true && gear == 0 && IAS < User.Default.GearDown && Alt < 500 && flaps > 20)
+                    if (User.Default.EnableGear == true && gear == 0 && IAS < User.Default.GearDown && Throttle < 20/*Alt < 500 && flaps > 20*/)
                     {
                         System.Media.SoundPlayer myPlayer;
-                        myPlayer = new System.Media.SoundPlayer(Properties.Resources.gearwarn);
+                        myPlayer = new System.Media.SoundPlayer(Properties.Resources.GearDown);
                         myPlayer.PlaySync();
                     }
+
+                    if (Fuel/FuelFull < 102 && Fuel/FuelFull > 100)
+                    {
+                        System.Media.SoundPlayer myPlayer;
+                        myPlayer = new System.Media.SoundPlayer(Properties.Resources.Bingo);
+                        myPlayer.PlaySync();
+                    }
+                  }
 
                 }
                 else
