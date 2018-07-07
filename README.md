@@ -10,6 +10,16 @@ game starts.
 ************************************************************************************
 
 ========================
+ZdrytchX's Changes 2018
+Contacts: https://discord.gg/NKMrMxw (Kirumovka@ZdrytchX#4887) or through Github.com/ZdrytchX or through war thunder forums
+========================
+-Modified "Gear Down" warning from below 500 metres / combat flaps minimum, to 20% throttle, as that's more realistic like used in aircraft like the spitfire. Previous landing warning wouldn't function above 500 metres from sea level which meant people flying on some tank arcade maps wouldn't hear the warning.
+
+-Added "Bingo Fuel" warning with the already present sound sample, it activates between 10% and 10.2% fuel remaining, which is enough to allow even Me 163 pilots to hear the warning. This means players with about 60 minutes of fuel max will retain the warning for about 10 seconds. As long as you aren't using a long range bomber like the B-29, it should function fine. There seems to be no other reliable alternative way to code this warning in.
+
+-Swapped the stall horn sound for the two-layererd stall sound used in jets, because it's less annoying and the information is better. Stall warning bleeps like a phone, deeper-stall warning (+ 2 degrees of user setting) is a solid tone.
+
+========================
 Before You Start
 ========================
 This software is currently BETA and I am the only tester so there may be bugs. Please feel free to report any bugs.
@@ -86,4 +96,3 @@ Version 3, 29 June 2007
 
 Copyright (c) 2016 Ahmet 'Europa' Mehmetbeyoglu
 Contact me in the War Thunder forums. 
-
