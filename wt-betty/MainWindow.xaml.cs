@@ -168,7 +168,7 @@ namespace wt_betty
                     }
 
 
-                    if (AoA > User.Default.AoA /*&& myIndicator.gears_lamp == "1"*/ && cbx_a.IsChecked == true)
+                    if (AoA > User.Default.AoA && myIndicator.gears_lamp == "1" && cbx_a.IsChecked == true)
                     {
                         System.Media.SoundPlayer myPlayer;
                         if (AoA < User.Default.AoA + 2)
