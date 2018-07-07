@@ -71,6 +71,12 @@ namespace wt_betty
         [JsonProperty(PropertyName = "IAS, km/h")]
         public string IAS { get; set; }
 
+        [JsonProperty(PropertyName = "Mfuel, kg")]
+        public string Mfuel { get; set; }
+
+        [JsonProperty(PropertyName = "Mfuel0, kg")]
+        public string Mfuel0 { get; set; }
+
         [JsonProperty(PropertyName = "M")]
         public string M { get; set; }
 
