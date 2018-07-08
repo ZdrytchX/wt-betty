@@ -150,6 +150,7 @@ namespace wt_betty
                     decimal G = Convert.ToDecimal(myState.Ny, culture);
                     decimal AoA = Convert.ToDecimal(myState.AoA, culture);
                     decimal Alt = Convert.ToDecimal(myIndicator.altitude_hour, culture);
+                    decimal Vspeed = Convert.ToDecimal(myState.Vy, culture);
                     int Fuel = Convert.ToInt32(myState.Mfuel) * 1000;
                     int FuelFull = Convert.ToInt32(myState.Mfuel0);
                     int Throttle = Convert.ToInt32(Convert.ToDecimal(myIndicator.throttle, culture) * 100);
@@ -158,7 +159,7 @@ namespace wt_betty
                     int flaps = Convert.ToInt32(myState.flaps);
                     label.Content = myIndicator.type;
 
-                    if (IAS > 20)//Check if we're like, y'know, in the air
+                    if (Vspeed != 0)//Check if we're like, y'know, in the air
                   {//Excuse the indent, for I have a small screen
                     if (cbx_g.IsChecked == true && G > User.Default.GForce )
                     {
@@ -168,20 +169,26 @@ namespace wt_betty
                     }
 
 
+                    System.Media.SoundPlayer myPlayer1;
+                    System.Media.SoundPlayer myPlayer2;
+                    myPlayer1 = new System.Media.SoundPlayer(Properties.Resources.AngleOfAttackOverLimit);
+                    myPlayer2 = new System.Media.SoundPlayer(Properties.Resources.MaximumAngleOfAttack);
+
                     if (AoA > User.Default.AoA && myIndicator.gears_lamp == "1" && cbx_a.IsChecked == true)
                     {
-                        System.Media.SoundPlayer myPlayer;
                         if (AoA < User.Default.AoA + 2)
                         {
-                          myPlayer = new System.Media.SoundPlayer(Properties.Resources.MaximumAngleOfAttack);
-                          myPlayer.PlaySync();
+                          myPlayer1.Stop();
+                          myPlayer2.PlayLooping();
                         }
                         else
                         {
-                          myPlayer = new System.Media.SoundPlayer(Properties.Resources.AngleOfAttackOverLimit);
-                          myPlayer.PlaySync();
+                          myPlayer2.Stop();
+                          myPlayer1.PlayLooping();
                         }//multi-layer AoA warnings as a variable-pitch isn't supported by MS's package
                     }
+                    else
+                    {myPlayer1.Stop();myPlayer2.Stop();}
 
 
                     if (User.Default.EnableGear == true && gear == 100 && IAS > User.Default.GearUp)
@@ -191,7 +198,7 @@ namespace wt_betty
                         myPlayer.PlaySync();
                     }
 
-                    if (User.Default.EnableGear == true && gear == 0 && IAS < User.Default.GearDown && Throttle < 20/*Alt < 500 && flaps > 20*/)
+                    if (User.Default.EnableGear == true && (AoA < 20 || Vspeed != 0) && gear == 0 && IAS < User.Default.GearDown && Throttle < 20/*Alt < 500 && flaps > 20*/)
                     {
                         System.Media.SoundPlayer myPlayer;
                         myPlayer = new System.Media.SoundPlayer(Properties.Resources.GearDown);
