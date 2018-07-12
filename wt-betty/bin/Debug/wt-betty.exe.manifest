@@ -62,7 +62,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>jFc91jk1LGtq976l95ExIV73BjR//D0gWSjCxHffhf4=</dsig:DigestValue>
+        <dsig:DigestValue>t7I8tSrWS5Oija+7OJld9F7YTF1WHe52JvcD9iFJixI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -72,7 +72,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>CA3aUurAeBhj7g6WmIg/cQZmrzJZ/7ncgtF+OzBbmWw=</dsig:DigestValue>
+      <dsig:DigestValue>11VMxccMRt1ZbC4ZWIH9OrnRgj5r2028OU8C56h0/l8=</dsig:DigestValue>
     </hash>
   </file>
   <file name="wt-betty.ico" size="161862">

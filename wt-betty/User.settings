@@ -18,10 +18,10 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="GearDown" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">210</Value>
+      <Value Profile="(Default)">270</Value>
     </Setting>
     <Setting Name="GearUp" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">250</Value>
+      <Value Profile="(Default)">270</Value>
     </Setting>
   </Settings>
 </SettingsFile>

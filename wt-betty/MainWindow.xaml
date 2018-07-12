@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:wt_betty"
         mc:Ignorable="d"
-        Title="War Thunder's Betty v1.0 (BETA)" Height="280" Width="400" ResizeMode="CanMinimize" Closing="Window_Closing" Loaded="Window_Loaded">
+        Title="War Thunder's Betty v1.1 (BETA)" Height="280" Width="400" ResizeMode="CanMinimize" Closing="Window_Closing" Loaded="Window_Loaded">
     <Grid Margin="0,0,11,11">
         <TabControl x:Name="tabControl" Margin="10,10,3,5" Background="{x:Null}">
             <TabItem x:Name="tab_main" Header="Main" Background="{x:Null}">

@@ -68,8 +68,6 @@ namespace wt_betty
                         dispatcherTimer2.Stop();
                         dispatcherTimer1.Start();
                         tbx_msgs.Text = ("Running");
-                        button_start.IsEnabled = false;
-                        button_stop.IsEnabled = true;
 
                     }
                     else if (myState.valid == "false")
@@ -77,10 +75,10 @@ namespace wt_betty
                         dispatcherTimer2.Start();
                         dispatcherTimer1.Stop();
                         tbx_msgs.Text = "Waiting for a flight...";
-                        button_start.IsEnabled = false;
-                        button_stop.IsEnabled = true;
 
                     }
+                    button_start.IsEnabled = false;
+                    button_stop.IsEnabled = true;
 
                 }
                 else
@@ -174,7 +172,7 @@ namespace wt_betty
                     myPlayer1 = new System.Media.SoundPlayer(Properties.Resources.AngleOfAttackOverLimit);
                     myPlayer2 = new System.Media.SoundPlayer(Properties.Resources.MaximumAngleOfAttack);
 
-                    if (AoA > User.Default.AoA && myIndicator.gears_lamp == "1" && cbx_a.IsChecked == true)
+                    if (AoA > User.Default.AoA && AoA < 20 && myIndicator.gears_lamp == "1" && cbx_a.IsChecked == true)
                     {
                         if (AoA < User.Default.AoA + 2)
                         {
@@ -257,11 +255,15 @@ namespace wt_betty
 
         private void button_stop_Click(object sender, RoutedEventArgs e)
         {
-            dispatcherTimer1.Stop();
+            dispatcherTimer1.Stop();//bug: Doesn't stop looping sounds
             dispatcherTimer2.Stop();
             button_start.IsEnabled = true;
             button_stop.IsEnabled = false;
-
+            System.Media.SoundPlayer myPlayer1;//attempt at fixing above said bug
+            System.Media.SoundPlayer myPlayer2;
+            myPlayer1 = new System.Media.SoundPlayer(Properties.Resources.AngleOfAttackOverLimit);
+            myPlayer2 = new System.Media.SoundPlayer(Properties.Resources.MaximumAngleOfAttack);
+            myPlayer1.Stop();myPlayer2.Stop();
         }
 
         private void button_save_Click(object sender, RoutedEventArgs e)
