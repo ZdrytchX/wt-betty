@@ -172,7 +172,7 @@ namespace wt_betty
                     myPlayer1 = new System.Media.SoundPlayer(Properties.Resources.AngleOfAttackOverLimit);
                     myPlayer2 = new System.Media.SoundPlayer(Properties.Resources.MaximumAngleOfAttack);
 
-                    if (AoA > User.Default.AoA && AoA < 20 && myIndicator.gears_lamp == "1" && cbx_a.IsChecked == true)
+                    if (AoA > User.Default.AoA && AoA < 20 && (myIndicator.gears_lamp != "0" || IAS < User.Default.GearUp - 50) && cbx_a.IsChecked == true)
                     {
                         if (AoA < User.Default.AoA + 2)
                         {
