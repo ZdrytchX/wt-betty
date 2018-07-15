@@ -202,7 +202,7 @@ namespace wt_betty
                         myPlayer.PlaySync();
                     }
 
-                    if (Fuel/FuelFull < 102 && Fuel/FuelFull > 100)
+                    if (Fuel/FuelFull < 103 && Fuel/FuelFull > 100)
                     {
                         System.Media.SoundPlayer myPlayer;
                         myPlayer = new System.Media.SoundPlayer(Properties.Resources.Bingo);
