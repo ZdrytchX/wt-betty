@@ -149,14 +149,13 @@ namespace wt_betty
                     decimal AoA = Convert.ToDecimal(myState.AoA, culture);
                     decimal Alt = Convert.ToDecimal(myIndicator.altitude_hour, culture);
                     decimal Vspeed = Convert.ToDecimal(myState.Vy, culture);
-                    int Fuel = Convert.ToInt32(myState.Mfuel) * 1000;
+                    int Fuel = Convert.ToInt32(myState.Mfuel) * 1000;//MFuel and MFuel0 are given in integers
                     int FuelFull = Convert.ToInt32(myState.Mfuel0);
-                    int Throttle = Convert.ToInt32(Convert.ToDecimal(myIndicator.throttle, culture) * 100);
+                    int Throttle = Convert.ToInt32(Convert.ToDecimal(myIndicator.throttle, culture) * 100);//TODO throttle variable only avialble in single engine aircraft
                     int gear = Convert.ToInt32(myState.gear);
-                    int IAS = Convert.ToInt32(myState.IAS);
+                    int IAS = Convert.ToInt32(myState.IAS);//unreliable?
                     int flaps = Convert.ToInt32(myState.flaps);
                     label.Content = myIndicator.type;
-
                     if (Vspeed != 0)//Check if we're like, y'know, in the air
                   {//Excuse the indent, for I have a small screen
                     if (cbx_g.IsChecked == true && G > User.Default.GForce )
@@ -172,7 +171,7 @@ namespace wt_betty
                     myPlayer1 = new System.Media.SoundPlayer(Properties.Resources.AngleOfAttackOverLimit);
                     myPlayer2 = new System.Media.SoundPlayer(Properties.Resources.MaximumAngleOfAttack);
 
-                    if (AoA > User.Default.AoA && AoA < 20 && (myIndicator.gears_lamp != "0" || IAS < User.Default.GearUp - 50) && cbx_a.IsChecked == true)
+                    if (AoA > User.Default.AoA && AoA < 20 && (myIndicator.gears_lamp != "0" && IAS > User.Default.GearUp - 50) && cbx_a.IsChecked == true)
                     {
                         if (AoA < User.Default.AoA + 2)
                         {
@@ -253,13 +252,14 @@ namespace wt_betty
             }
         }
 
+        //TODO: User-assigned key binding for toggle of the program
         private void button_stop_Click(object sender, RoutedEventArgs e)
         {
-            dispatcherTimer1.Stop();//bug: Doesn't stop looping sounds
+            dispatcherTimer1.Stop();
             dispatcherTimer2.Stop();
             button_start.IsEnabled = true;
             button_stop.IsEnabled = false;
-            System.Media.SoundPlayer myPlayer1;//attempt at fixing above said bug
+            System.Media.SoundPlayer myPlayer1;
             System.Media.SoundPlayer myPlayer2;
             myPlayer1 = new System.Media.SoundPlayer(Properties.Resources.AngleOfAttackOverLimit);
             myPlayer2 = new System.Media.SoundPlayer(Properties.Resources.MaximumAngleOfAttack);
