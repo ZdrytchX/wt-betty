@@ -156,14 +156,8 @@ namespace wt_betty
                     int IAS = Convert.ToInt32(myState.IAS);//unreliable?
                     int flaps = Convert.ToInt32(myState.flaps);
                     label.Content = myIndicator.type;
-                    if (cbx_g.IsChecked == true && G > User.Default.GForce )
-                    {
-                        System.Media.SoundPlayer myPlayer;
-                        myPlayer = new System.Media.SoundPlayer(Properties.Resources.OverG);
-                        myPlayer.PlaySync();
-                    }
-
-
+                    
+                    //Stall Warning Mandatory pre-definitnions
                     System.Media.SoundPlayer myPlayer1;
                     System.Media.SoundPlayer myPlayer2;
                     myPlayer1 = new System.Media.SoundPlayer(Properties.Resources.AngleOfAttackOverLimit);
@@ -194,10 +188,17 @@ namespace wt_betty
                     {myPlayer1.Stop();myPlayer2.Stop();}
 
                     //PULL UP Ground Proximity Warning
-                    if ((0 - Vspeed) * 3 > (Alt + 100))
+                    if (((0 - Vspeed) * IAS / 60) > (Alt + 300))
                     {
                         System.Media.SoundPlayer myPlayer;
                         myPlayer = new System.Media.SoundPlayer(Properties.Resources.PullUp);
+                        myPlayer.PlaySync();
+                    }
+
+                    if (cbx_g.IsChecked == true && G > User.Default.GForce)
+                    {
+                        System.Media.SoundPlayer myPlayer;
+                        myPlayer = new System.Media.SoundPlayer(Properties.Resources.OverG);
                         myPlayer.PlaySync();
                     }
 
@@ -210,7 +211,7 @@ namespace wt_betty
                         myPlayer.PlaySync();
                     }
 
-                    if (User.Default.EnableGear == true && (AoA < 20 || Vspeed != 0) && gear == 0 && IAS < User.Default.GearDown && Throttle < 20/*Alt < 500 && flaps > 20*/)
+                    if (User.Default.EnableGear == true && (AoA < 20 || Vspeed > -10) && gear == 0 && IAS < User.Default.GearDown && Throttle < 20/*Alt < 500 && flaps > 20*/)
                     {
                         System.Media.SoundPlayer myPlayer;
                         myPlayer = new System.Media.SoundPlayer(Properties.Resources.GearDown);
