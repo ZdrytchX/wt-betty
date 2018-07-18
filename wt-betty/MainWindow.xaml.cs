@@ -156,8 +156,6 @@ namespace wt_betty
                     int IAS = Convert.ToInt32(myState.IAS);//unreliable?
                     int flaps = Convert.ToInt32(myState.flaps);
                     label.Content = myIndicator.type;
-                    if (Vspeed != 0)//Check if we're like, y'know, in the air
-                  {//Excuse the indent, for I have a small screen
                     if (cbx_g.IsChecked == true && G > User.Default.GForce )
                     {
                         System.Media.SoundPlayer myPlayer;
@@ -171,6 +169,14 @@ namespace wt_betty
                     myPlayer1 = new System.Media.SoundPlayer(Properties.Resources.AngleOfAttackOverLimit);
                     myPlayer2 = new System.Media.SoundPlayer(Properties.Resources.MaximumAngleOfAttack);
 
+                    //BINGO FUEL
+                    if (Fuel / FuelFull < 103 && Fuel / FuelFull > 100)
+                    {
+                        System.Media.SoundPlayer myPlayer;
+                        myPlayer = new System.Media.SoundPlayer(Properties.Resources.Bingo);
+                        myPlayer.PlaySync();
+                    }
+                    //STALL WARNING
                     if (AoA > User.Default.AoA && AoA < 20 && (myIndicator.gears_lamp != "0" && IAS > User.Default.GearUp - 50) && cbx_a.IsChecked == true)
                     {
                         if (AoA < User.Default.AoA + 2)
@@ -187,7 +193,16 @@ namespace wt_betty
                     else
                     {myPlayer1.Stop();myPlayer2.Stop();}
 
+                    //PULL UP Ground Proximity Warning
+                    if ((0 - Vspeed) * 3 > (Alt + 100))
+                    {
+                        System.Media.SoundPlayer myPlayer;
+                        myPlayer = new System.Media.SoundPlayer(Properties.Resources.PullUp);
+                        myPlayer.PlaySync();
+                    }
 
+                    //=========LOW PRIORITY WARNINGS=======
+                    //GEAR UP/DOWN
                     if (User.Default.EnableGear == true && gear == 100 && IAS > User.Default.GearUp)
                     {
                         System.Media.SoundPlayer myPlayer;
@@ -201,14 +216,6 @@ namespace wt_betty
                         myPlayer = new System.Media.SoundPlayer(Properties.Resources.GearDown);
                         myPlayer.PlaySync();
                     }
-
-                    if (Fuel/FuelFull < 103 && Fuel/FuelFull > 100)
-                    {
-                        System.Media.SoundPlayer myPlayer;
-                        myPlayer = new System.Media.SoundPlayer(Properties.Resources.Bingo);
-                        myPlayer.PlaySync();
-                    }
-                  }
 
                 }
                 else
