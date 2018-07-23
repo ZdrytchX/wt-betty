@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:wt_betty"
         mc:Ignorable="d"
-        Title="War Thunder's Betty v1.1 (BETA)" Height="280" Width="400" ResizeMode="CanMinimize" Closing="Window_Closing" Loaded="Window_Loaded">
+        Title="War Thunder's Betty v1.1 (BETA)" Height="380" Width="400" ResizeMode="CanMinimize" Closing="Window_Closing" Loaded="Window_Loaded">
     <Grid Margin="0,0,11,11">
         <TabControl x:Name="tabControl" Margin="10,10,3,5" Background="{x:Null}">
             <TabItem x:Name="tab_main" Header="Main" Background="{x:Null}">
@@ -15,7 +15,7 @@
                     </Grid.ColumnDefinitions>
                     <Button x:Name="button_start" Content="Start" HorizontalAlignment="Right" Margin="0,0,90,10" Width="75" Height="20" VerticalAlignment="Bottom" Click="button_start_Click"/>
                     <Button x:Name="button_stop" Content="Stop" Margin="0,0,10,10" HorizontalAlignment="Right" Width="75" Height="20" VerticalAlignment="Bottom" Click="button_stop_Click"/>
-                    <TextBox x:Name="tbx_msgs" Height="140" Margin="10,10,10,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                    <TextBox x:Name="tbx_msgs" Height="240" Margin="10,10,10,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Options" Background="{x:Null}">
@@ -31,10 +31,11 @@
                     <TextBox x:Name="textBox_gSlider" Height="23" Margin="305,6,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Text="{Binding ElementName=slider_G, Path=Value, UpdateSourceTrigger=PropertyChanged}"/>
                     <TextBox x:Name="textBox_aSlider" Height="23" Margin="305,52,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Text="{Binding ElementName=slider_A, Path=Value, UpdateSourceTrigger=PropertyChanged}"/>
                     <Button x:Name="button_save" Content="Save Settings" Grid.Column="1" Margin="0,0,10,10" HorizontalAlignment="Right" Width="86" Height="20" VerticalAlignment="Bottom" Click="button_save_Click"/>
-                    <CheckBox x:Name="cbx_gear" Content="Gear" HorizontalAlignment="Left" Margin="1,105,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                    <CheckBox x:Name="cbx_gear" Content="Gear" HorizontalAlignment="Left" Margin="1,10,0,63" VerticalAlignment="Bottom" Grid.Column="1"/>
                     <TextBox x:Name="tbx_geardown" Margin="305,0,10,72" TextWrapping="Wrap" Grid.Column="1" Height="23" VerticalAlignment="Bottom"/>
                     <Label x:Name="label1" Content="Gear Down Threshold" Margin="164,0,55,69" Grid.Column="1" Height="26" VerticalAlignment="Bottom"/>
                     <Label x:Name="label2" Content="Gear Up Threshold" Margin="164,0,55,44" Grid.Column="1" Height="26" VerticalAlignment="Bottom"/>
+                    <Label x:Name="label3" Content="(Slider and Toggles TODO: Pull-Up threshold, Bingo Fuel)" Margin="0,0,0,135" Grid.Column="1" Height="26" VerticalAlignment="Bottom"/>
                     <TextBox x:Name="tbx_gearup" Margin="305,0,10,44" TextWrapping="Wrap" Grid.Column="1" Height="23" VerticalAlignment="Bottom"/>
                     <Button x:Name="btn_reset" Content="Reset" HorizontalAlignment="Left" Margin="1,0,0,10" Width="75" Grid.Column="1" Click="btn_reset_Click" Height="20" VerticalAlignment="Bottom"/>
                     <Button x:Name="btn_help" Content="Help" Grid.Column="1" HorizontalAlignment="Left" Margin="81,0,0,10" Width="75" Height="20" VerticalAlignment="Bottom" Click="btn_help_Click"/>

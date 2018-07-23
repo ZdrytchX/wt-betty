@@ -204,14 +204,15 @@ namespace wt_betty
 
                     //=========LOW PRIORITY WARNINGS=======
                     //GEAR UP/DOWN
-                    if (User.Default.EnableGear == true && gear == 100 && IAS > User.Default.GearUp)
+                    if (User.Default.EnableGear == true && gear == 100 && IAS > User.Default.GearUp && myIndicator.gears_lamp == "0")
                     {
                         System.Media.SoundPlayer myPlayer;
                         myPlayer = new System.Media.SoundPlayer(Properties.Resources.GearUp);
                         myPlayer.PlaySync();
                     }
 
-                    if (User.Default.EnableGear == true && (AoA < 20 || Vspeed > -10) && gear == 0 && IAS < User.Default.GearDown && Throttle < 20/*Alt < 500 && flaps > 20*/)
+                    if (User.Default.EnableGear == true && (AoA < 20 || Vspeed > -10) && gear == 0 &&
+                        IAS < User.Default.GearDown && IAS > 40 && Throttle < 20 && myIndicator.gears_lamp != "0"/*Alt < 500 && flaps > 20*/)
                     {
                         System.Media.SoundPlayer myPlayer;
                         myPlayer = new System.Media.SoundPlayer(Properties.Resources.GearDown);
@@ -306,8 +307,8 @@ namespace wt_betty
                 User.Default.EnableGear = true;
                 User.Default.GForce = 6;
                 User.Default.AoA = 12;
-                User.Default.GearDown = 210;
-                User.Default.GearUp = 250;
+                User.Default.GearDown = 270;
+                User.Default.GearUp = 270;
                 User.Default.Save();
 
                 cbx_a.IsChecked = User.Default.EnableA;
