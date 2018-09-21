@@ -173,7 +173,7 @@ namespace wt_betty
                         stall1 = new System.Media.SoundPlayer(Properties.Resources.AngleOfAttackOverLimit);
                         stall2 = new System.Media.SoundPlayer(Properties.Resources.MaximumAngleOfAttack);
 
-                        if (AoA > User.Default.AoA && AoA < 20 && (myIndicator.gears_lamp != "0" && IAS > User.Default.GearUp - 50))
+                        if (AoA > User.Default.AoA && AoA < 20 && (myIndicator.gears_lamp == "1" || IAS > 100))
                         {
                             if (AoA < User.Default.AoA + 2)
                             {
