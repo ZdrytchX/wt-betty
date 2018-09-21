@@ -156,6 +156,7 @@ namespace wt_betty
                     int IAS = Convert.ToInt32(myState.IAS);//unreliable?
                     int flaps = Convert.ToInt32(myState.flaps);
                     label.Content = myIndicator.type;
+                    
 
                     //BINGO FUEL
                     if (Fuel / FuelFull < 103 && Fuel / FuelFull > 100)
@@ -164,7 +165,7 @@ namespace wt_betty
                         myPlayer = new System.Media.SoundPlayer(Properties.Resources.Bingo);
                         myPlayer.PlaySync();
                     }
-
+                    
                     //STALL WARNING
                     if (cbx_a.IsChecked == true)
                     {   //Stall Warning Mandatory pre-definitnions
@@ -211,8 +212,10 @@ namespace wt_betty
                             }
 
                         }
+                        else
+                        { G1.Stop(); G2.Stop(); }
                     }
-                    
+
                     //PULL UP Ground Proximity Warning
                     if (((0 - Vspeed) * IAS / 60) > (Alt + 300))
                     {
