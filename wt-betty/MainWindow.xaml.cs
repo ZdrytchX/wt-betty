@@ -157,11 +157,7 @@ namespace wt_betty
                     int flaps = Convert.ToInt32(myState.flaps);
                     label.Content = myIndicator.type;
                     
-                    //Stall Warning Mandatory pre-definitnions
-                    System.Media.SoundPlayer myPlayer1;
-                    System.Media.SoundPlayer myPlayer2;
-                    myPlayer1 = new System.Media.SoundPlayer(Properties.Resources.AngleOfAttackOverLimit);
-                    myPlayer2 = new System.Media.SoundPlayer(Properties.Resources.MaximumAngleOfAttack);
+
 
                     //BINGO FUEL
                     if (Fuel / FuelFull < 103 && Fuel / FuelFull > 100)
@@ -171,34 +167,56 @@ namespace wt_betty
                         myPlayer.PlaySync();
                     }
                     //STALL WARNING
-                    if (AoA > User.Default.AoA && AoA < 20 && (myIndicator.gears_lamp != "0" && IAS > User.Default.GearUp - 50) && cbx_a.IsChecked == true)
-                    {
-                        if (AoA < User.Default.AoA + 2)
+                    if (cbx_a.IsChecked == true)
+                    {   //Stall Warning Mandatory pre-definitnions
+                        System.Media.SoundPlayer myPlayer1;
+                        System.Media.SoundPlayer myPlayer2;
+                        myPlayer1 = new System.Media.SoundPlayer(Properties.Resources.AngleOfAttackOverLimit);
+                        myPlayer2 = new System.Media.SoundPlayer(Properties.Resources.MaximumAngleOfAttack);
+
+                        if (AoA > User.Default.AoA && AoA < 20 && (myIndicator.gears_lamp != "0" && IAS > User.Default.GearUp - 50) && cbx_a.IsChecked == true)
                         {
-                          myPlayer1.Stop();
-                          myPlayer2.PlayLooping();
+                            if (AoA < User.Default.AoA + 2)
+                            {
+                                myPlayer1.Stop();
+                                myPlayer2.PlayLooping();
+                            }
+                            else
+                            {
+                                myPlayer2.Stop();
+                                myPlayer1.PlayLooping();
+                            }//multi-layer AoA warnings as a variable-pitch isn't supported by MS's package
                         }
                         else
-                        {
-                          myPlayer2.Stop();
-                          myPlayer1.PlayLooping();
-                        }//multi-layer AoA warnings as a variable-pitch isn't supported by MS's package
+                        { myPlayer1.Stop(); myPlayer2.Stop(); }
                     }
-                    else
-                    {myPlayer1.Stop();myPlayer2.Stop();}
+
+                    //G OVERLOAD
+                    if (cbx_g.IsChecked == true)
+                    {
+                        System.Media.SoundPlayer myPlayer1;
+                        System.Media.SoundPlayer myPlayer2;
+                        myPlayer1 = new System.Media.SoundPlayer(Properties.Resources.OverG);
+                        myPlayer2 = new System.Media.SoundPlayer(Properties.Resources.GOverLimit);
+                        if (G > (decimal)9.5)
+                        {
+                            myPlayer1.Stop();
+                            myPlayer2.PlaySync();
+                        }
+                        else if (G > User.Default.GForce && G <= (decimal)9.5)
+                        {
+                            myPlayer2.Stop();
+                            myPlayer1.PlaySync();
+                        }
+                        else
+                        { myPlayer1.Stop(); myPlayer2.Stop(); }
+                    }
 
                     //PULL UP Ground Proximity Warning
                     if (((0 - Vspeed) * IAS / 60) > (Alt + 300))
                     {
                         System.Media.SoundPlayer myPlayer;
                         myPlayer = new System.Media.SoundPlayer(Properties.Resources.PullUp);
-                        myPlayer.PlaySync();
-                    }
-
-                    if (cbx_g.IsChecked == true && G > User.Default.GForce)
-                    {
-                        System.Media.SoundPlayer myPlayer;
-                        myPlayer = new System.Media.SoundPlayer(Properties.Resources.OverG);
                         myPlayer.PlaySync();
                     }
 
