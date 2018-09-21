@@ -158,7 +158,6 @@ namespace wt_betty
                     label.Content = myIndicator.type;
                     
 
-
                     //BINGO FUEL
                     if (Fuel / FuelFull < 103 && Fuel / FuelFull > 100)
                     {
@@ -166,50 +165,55 @@ namespace wt_betty
                         myPlayer = new System.Media.SoundPlayer(Properties.Resources.Bingo);
                         myPlayer.PlaySync();
                     }
+                    
                     //STALL WARNING
                     if (cbx_a.IsChecked == true)
                     {   //Stall Warning Mandatory pre-definitnions
-                        System.Media.SoundPlayer myPlayer1;
-                        System.Media.SoundPlayer myPlayer2;
-                        myPlayer1 = new System.Media.SoundPlayer(Properties.Resources.AngleOfAttackOverLimit);
-                        myPlayer2 = new System.Media.SoundPlayer(Properties.Resources.MaximumAngleOfAttack);
+                        System.Media.SoundPlayer stall1;
+                        System.Media.SoundPlayer stall2;
+                        stall1 = new System.Media.SoundPlayer(Properties.Resources.AngleOfAttackOverLimit);
+                        stall2 = new System.Media.SoundPlayer(Properties.Resources.MaximumAngleOfAttack);
 
-                        if (AoA > User.Default.AoA && AoA < 20 && (myIndicator.gears_lamp != "0" && IAS > User.Default.GearUp - 50) && cbx_a.IsChecked == true)
+                        if (AoA > User.Default.AoA && AoA < 20 && (myIndicator.gears_lamp != "0" && IAS > User.Default.GearUp - 50))
                         {
                             if (AoA < User.Default.AoA + 2)
                             {
-                                myPlayer1.Stop();
-                                myPlayer2.PlayLooping();
+                                stall1.Stop();
+                                stall2.PlayLooping();
                             }
                             else
                             {
-                                myPlayer2.Stop();
-                                myPlayer1.PlayLooping();
+                                stall2.Stop();
+                                stall1.PlayLooping();
                             }//multi-layer AoA warnings as a variable-pitch isn't supported by MS's package
                         }
                         else
-                        { myPlayer1.Stop(); myPlayer2.Stop(); }
+                        { stall1.Stop(); stall2.Stop(); }
                     }
-
+                    
                     //G OVERLOAD
                     if (cbx_g.IsChecked == true)
                     {
-                        System.Media.SoundPlayer myPlayer1;
-                        System.Media.SoundPlayer myPlayer2;
-                        myPlayer1 = new System.Media.SoundPlayer(Properties.Resources.OverG);
-                        myPlayer2 = new System.Media.SoundPlayer(Properties.Resources.GOverLimit);
-                        if (G > User.Default.GForce + 4 - User.Default.GForce / 5)
+                        System.Media.SoundPlayer G1;
+                        System.Media.SoundPlayer G2;
+                        G1 = new System.Media.SoundPlayer(Properties.Resources.OverG);
+                        G2 = new System.Media.SoundPlayer(Properties.Resources.GOverLimit);
+                        if (G > User.Default.GForce)
                         {
-                            myPlayer1.Stop();
-                            myPlayer2.PlaySync();
-                        }
-                        else if (G > User.Default.GForce && G <= User.Default.GForce + 4 - User.Default.GForce / 5)
-                        {
-                            myPlayer2.Stop();
-                            myPlayer1.PlaySync();
+                            if (G > User.Default.GForce + 4 - User.Default.GForce / (decimal)5)
+                            {
+                                G1.Stop();
+                                G2.PlaySync();
+                            }
+                            else
+                            {
+                                G2.Stop();
+                                G1.PlaySync();
+                            }
+
                         }
                         else
-                        { myPlayer1.Stop(); myPlayer2.Stop(); }
+                        { G1.Stop(); G2.Stop(); }
                     }
 
                     //PULL UP Ground Proximity Warning
