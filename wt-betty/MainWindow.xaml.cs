@@ -198,12 +198,12 @@ namespace wt_betty
                         System.Media.SoundPlayer myPlayer2;
                         myPlayer1 = new System.Media.SoundPlayer(Properties.Resources.OverG);
                         myPlayer2 = new System.Media.SoundPlayer(Properties.Resources.GOverLimit);
-                        if (G > (decimal)9.5)
+                        if (G > User.Default.GForce + 4 - User.Default.GForce / 5)
                         {
                             myPlayer1.Stop();
                             myPlayer2.PlaySync();
                         }
-                        else if (G > User.Default.GForce && G <= (decimal)9.5)
+                        else if (G > User.Default.GForce && G <= User.Default.GForce + 4 - User.Default.GForce / 5)
                         {
                             myPlayer2.Stop();
                             myPlayer1.PlaySync();
