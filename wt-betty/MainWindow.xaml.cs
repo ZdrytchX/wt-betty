@@ -199,7 +199,7 @@ namespace wt_betty
                         G2 = new System.Media.SoundPlayer(Properties.Resources.GOverLimit);
                         if (G > User.Default.GForce)
                         {
-                            if (G > User.Default.GForce + 4 - User.Default.GForce / (decimal)5)
+                            if (G > User.Default.GForce + 4 - User.Default.GForce / (decimal)4)
                             {
                                 G1.Stop();
                                 G2.PlaySync();
@@ -214,7 +214,7 @@ namespace wt_betty
                     }
                     
                     //PULL UP Ground Proximity Warning
-                    if (((0 - Vspeed) * IAS / 60) > (Alt + 300))
+                    if (((0 - Vspeed) * ((IAS - 60) / 60 + (decimal)0.5)) > (Alt + 300))
                     {
                         System.Media.SoundPlayer myPlayer;
                         myPlayer = new System.Media.SoundPlayer(Properties.Resources.PullUp);
