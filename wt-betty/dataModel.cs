@@ -65,6 +65,9 @@ namespace wt_betty
         [JsonProperty(PropertyName = "gear, %")]
         public string gear { get; set; }
 
+        [JsonProperty(PropertyName = "H, m")]
+        public string H { get; set; }
+
         [JsonProperty(PropertyName = "TAS, km/h")]
         public string TAS { get; set; }
 

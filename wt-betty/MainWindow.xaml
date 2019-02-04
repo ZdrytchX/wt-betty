@@ -5,7 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:wt_betty"
         mc:Ignorable="d"
-        Title="War Thunder's Betty v1.1 (BETA)" Height="380" Width="400" ResizeMode="CanMinimize" Closing="Window_Closing" Loaded="Window_Loaded">
+        Title="War Thunder's Betty v1.2 (BETA)" Height="495" Width="400" ResizeMode="CanMinimize" Closing="Window_Closing" Loaded="Window_Loaded">
+    <Window.Resources>
+        <local:mToftConversion x:Key="mToftConversion"/>
+        <local:kphTomphConversion x:Key="kphTomphConversion"/>
+    </Window.Resources>
     <Grid Margin="0,0,11,11">
         <TabControl x:Name="tabControl" Margin="10,10,3,5" Background="{x:Null}">
             <TabItem x:Name="tab_main" Header="Main" Background="{x:Null}">
@@ -15,30 +19,96 @@
                     </Grid.ColumnDefinitions>
                     <Button x:Name="button_start" Content="Start" HorizontalAlignment="Right" Margin="0,0,90,10" Width="75" Height="20" VerticalAlignment="Bottom" Click="button_start_Click"/>
                     <Button x:Name="button_stop" Content="Stop" Margin="0,0,10,10" HorizontalAlignment="Right" Width="75" Height="20" VerticalAlignment="Bottom" Click="button_stop_Click"/>
-                    <TextBox x:Name="tbx_msgs" Height="240" Margin="10,10,10,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                    <TextBox x:Name="tbx_msgs" Margin="10,10,10,40" TextWrapping="Wrap"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Options" Background="{x:Null}">
                 <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="155"/>
+                        <RowDefinition Height="80"/>
+                        <RowDefinition Height="65"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="15*"/>
                         <ColumnDefinition Width="593*"/>
                     </Grid.ColumnDefinitions>
-                    <CheckBox x:Name="cbx_g" Content="G-Force" HorizontalAlignment="Left" Margin="1,10,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-                    <CheckBox x:Name="cbx_a" Content="Angle of Attack" HorizontalAlignment="Left" Margin="0,57,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-                    <Slider x:Name="slider_G" Margin="127,10,55,0" VerticalAlignment="Top" Grid.Column="1" TickPlacement="BottomRight" Minimum="4" Value="6" IsSnapToTickEnabled="True" />
-                    <Slider x:Name="slider_A" Margin="127,48,55,0" VerticalAlignment="Top" Grid.Column="1" TickPlacement="TopLeft" Maximum="18" Minimum="10" SmallChange="1" IsSnapToTickEnabled="True" Value="12" />
-                    <TextBox x:Name="textBox_gSlider" Height="23" Margin="305,6,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Text="{Binding ElementName=slider_G, Path=Value, UpdateSourceTrigger=PropertyChanged}"/>
-                    <TextBox x:Name="textBox_aSlider" Height="23" Margin="305,52,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Text="{Binding ElementName=slider_A, Path=Value, UpdateSourceTrigger=PropertyChanged}"/>
-                    <Button x:Name="button_save" Content="Save Settings" Grid.Column="1" Margin="0,0,10,10" HorizontalAlignment="Right" Width="86" Height="20" VerticalAlignment="Bottom" Click="button_save_Click"/>
-                    <CheckBox x:Name="cbx_gear" Content="Gear" HorizontalAlignment="Left" Margin="1,10,0,63" VerticalAlignment="Bottom" Grid.Column="1"/>
-                    <TextBox x:Name="tbx_geardown" Margin="305,0,10,72" TextWrapping="Wrap" Grid.Column="1" Height="23" VerticalAlignment="Bottom"/>
-                    <Label x:Name="label1" Content="Gear Down Threshold" Margin="164,0,55,69" Grid.Column="1" Height="26" VerticalAlignment="Bottom"/>
-                    <Label x:Name="label2" Content="Gear Up Threshold" Margin="164,0,55,44" Grid.Column="1" Height="26" VerticalAlignment="Bottom"/>
-                    <Label x:Name="label3" Content="(Slider and Toggles TODO: Pull-Up threshold, Bingo Fuel)" Margin="0,0,0,135" Grid.Column="1" Height="26" VerticalAlignment="Bottom"/>
-                    <TextBox x:Name="tbx_gearup" Margin="305,0,10,44" TextWrapping="Wrap" Grid.Column="1" Height="23" VerticalAlignment="Bottom"/>
-                    <Button x:Name="btn_reset" Content="Reset" HorizontalAlignment="Left" Margin="1,0,0,10" Width="75" Grid.Column="1" Click="btn_reset_Click" Height="20" VerticalAlignment="Bottom"/>
-                    <Button x:Name="btn_help" Content="Help" Grid.Column="1" HorizontalAlignment="Left" Margin="81,0,0,10" Width="75" Height="20" VerticalAlignment="Bottom" Click="btn_help_Click"/>
+                    <CheckBox x:Name="cbx_g" Content="G-Force" HorizontalAlignment="Left" Margin="1,10,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="0"/>
+                    <Slider x:Name="slider_G" Margin="127,10,55,0" VerticalAlignment="Top" Grid.Column="1" TickPlacement="BottomRight" Minimum="4" Value="6" IsSnapToTickEnabled="True" Grid.RowSpan="2" Grid.Row="0"/>
+                    <TextBox x:Name="textBox_gSlider" Height="23" Margin="305,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Text="{Binding ElementName=slider_G, Path=Value, UpdateSourceTrigger=PropertyChanged}" Width="30" HorizontalAlignment="Left" Grid.RowSpan="2" Grid.Row="0"/>
+
+                    <CheckBox x:Name="cbx_a" Content="Angle of Attack" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1"/>
+                    <Slider x:Name="slider_A" Margin="127,10,55,0" VerticalAlignment="Top" Grid.Column="1" TickPlacement="BottomRight" Maximum="18" Minimum="10" SmallChange="1" IsSnapToTickEnabled="True" Value="12" Grid.Row="1" />
+                    <TextBox x:Name="textBox_aSlider" Height="23" Margin="305,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Text="{Binding ElementName=slider_A, Path=Value, UpdateSourceTrigger=PropertyChanged}" Width="30" HorizontalAlignment="Left" Grid.Row="1"/>
+
+                    <CheckBox x:Name="cbx_pullUp" Content="Pull Up" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="2"/>
+                    <Label x:Name="label_groundLevel" Content="Ground Level" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Margin="0,30,155,0" VerticalAlignment="Top" Padding="1" ToolTip="A proper ground level helps improve the accuracy of PULL UP and ALTITUDE warning" Panel.ZIndex="1"/>
+                    <GroupBox Header="Ground Level" HorizontalAlignment="Right" Margin="0,30,5,0" VerticalAlignment="Top" Width="230" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Height="75">
+                        <Grid>
+                            <TextBox x:Name="textBox_groundLevel_m" HorizontalAlignment="Left" Height="23" Margin="5,3,0,0" TextWrapping="Wrap" Text="9999" VerticalAlignment="Top" Width="40" MaxLines="1" MaxLength="5"/>
+                            <Label x:Name="label_groundLevel_m" Content="m" HorizontalAlignment="Left" Margin="45,3,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.25,0.519" Height="23" Padding="1,5,5,5"/>
+                            <Label x:Name="label_groundLevel_ft" Content="{Binding ElementName=textBox_groundLevel_m, Path=Text, Converter={StaticResource mToftConversion}, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="60,3,0,0" VerticalAlignment="Top" Height="23"/>
+                            <CheckBox x:Name="cbx_groundLevelAutoDetect" Content="Auto detect" HorizontalAlignment="Right" Margin="0,7,3,0" VerticalAlignment="Top" RenderTransformOrigin="0.835,0.767" ToolTip="Only works if your plane is stationary (e.g. on airfield or crashed)" IsChecked="True" Unchecked="cbx_groundLevelAutoDetect_Unchecked"/>
+                            <Button x:Name="button_setAltitude" Content="Set current ALT as ground lvl" HorizontalAlignment="Left" Margin="5,0,0,3" VerticalAlignment="Bottom" Click="button_setAltitude_Click"/>
+                            <Button x:Name="button_setAltitude_seaLevel" Content="Sea level" HorizontalAlignment="Right" Margin="0,0,3,3" VerticalAlignment="Bottom" Click="button_setAltitude_seaLevel_Click"/>
+                        </Grid>
+                    </GroupBox>
+
+                    <CheckBox x:Name="cbx_altitude" Content="Altitude" HorizontalAlignment="Left" Margin="0,110,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="2"/>
+                    <Label x:Name="label_altitudeWarning" Content="Low Altitude Warning:" Grid.Column="1" HorizontalAlignment="Left" Margin="127,110,0,0" VerticalAlignment="Top" Padding="1" Grid.Row="2"/>
+                    <TextBox x:Name="textBox_altitudeWarning_m" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="127,130,0,0" TextWrapping="Wrap" Text="9999" VerticalAlignment="Top" Width="35" MaxLines="1" MaxLength="4" Grid.Row="2"/>
+                    <Label x:Name="label_altitudeWarning_m" Content="m" Grid.Column="1" HorizontalAlignment="Left" Margin="162,130,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.25,0.519" Height="23" Padding="1,5,5,5" Grid.Row="2"/>
+                    <Label x:Name="label_altitudeWarning_ft" Content="{Binding ElementName=textBox_altitudeWarning_m, Path=Text, Converter={StaticResource mToftConversion}, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" HorizontalAlignment="Left" Margin="177,130,0,0" VerticalAlignment="Top" Height="23" Grid.Row="2"/>
+                    <Label x:Name="label_aboveGroundLevel" Content="above ground level" Grid.Column="1" HorizontalAlignment="Right" Margin="0,130,10,0" VerticalAlignment="Top" Padding="5,5,5,0" Grid.Row="2" Height="23"/>
+
+                    <Label x:Name="label_planeType" Content="Plane Type:" Grid.Column="1" HorizontalAlignment="Left" Margin="127,5,0,0" VerticalAlignment="Top" Padding="1" ToolTip="Each plane type has distinct rule to determine Excessive Descent Rate" Grid.Row="2"/>
+                    <ComboBox x:Name="comboBox_planeType" Grid.Column="1" Margin="195,5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="2" Padding="5,3,3,3">
+                        <ComboBoxItem Content="Prop/Turboprop" IsSelected="True"/>
+                        <ComboBoxItem Content="Jet"/>
+                    </ComboBox>
+
+                    <CheckBox x:Name="cbx_bingoFuel" Content="Bingo Fuel" HorizontalAlignment="Left" Margin="0,5,0,0" VerticalAlignment="Top" Grid.Row="3" Grid.Column="1"/>
+                    <Label  x:Name="label_bingoFuel_remainingFuel" Content="Remaining Fuel Threshold:" Grid.Column="1" HorizontalAlignment="Left" Margin="127,5,0,0" VerticalAlignment="Top" Padding="1" Grid.Row="3"/>
+                    <Slider x:Name="slider_bingoFuel" Margin="122,25,55,0" VerticalAlignment="Top" Grid.Column="1" TickPlacement="BottomRight" Maximum="100" Minimum="1" SmallChange="1" IsSnapToTickEnabled="True" Value="10" Grid.Row="3" />
+                    <TextBox x:Name="textBox_bingoFuelPercentage" Height="23" Margin="0,25,23,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Text="{Binding ElementName=slider_bingoFuel, Path=Value, UpdateSourceTrigger=PropertyChanged}" MaxLines="1" MaxLength="3" Width="27" Panel.ZIndex="1" HorizontalAlignment="Right" Grid.Row="3" TextChanged="textBox_bingoFuelPercentage_TextChanged"/>
+                    <Label  x:Name="label_bingoFuelPercentage_sign" Content="%" Grid.Column="1" HorizontalAlignment="Right" Margin="0,25,7,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.75" Padding="1,5,5,5" Height="23" Grid.Row="3"/>
+                    <Label x:Name="label_bingoFuelWarningLength" Content="Aural warning length:" Grid.Column="1" HorizontalAlignment="Left" Margin="127,0,0,7" VerticalAlignment="Bottom" Grid.Row="3" Padding="1"/>
+                    <TextBox x:Name="textBox_bingoFuelWarningLength" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="250,0,0,5" TextWrapping="Wrap" Text="5" VerticalAlignment="Bottom" Width="25" MaxLength="2" MaxLines="1" Grid.Row="3"/>
+                    <CheckBox x:Name="cbx_bingoFuelRepeat" Content="Repeat" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,10,7" VerticalAlignment="Bottom" IsChecked="True" ToolTip="If checked, the bingo fuel warning would repeat with a geometric sequence with common ratio 1/2 (e.g. 10, 5, 2, 1)" Grid.Row="3"/>
+
+                    <CheckBox x:Name="cbx_gear" Content="Gear" HorizontalAlignment="Left" Margin="0,5,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="4"/>
+                    <Label x:Name="label_gearDown" Content="Gear Down Threshold:" Margin="0,5,105,0" Grid.Column="1" Height="26" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Row="4"/>
+                    <TextBox x:Name="textBox_gearDown" Margin="0,7,75,0" TextWrapping="Wrap" Grid.Column="1" Height="23" VerticalAlignment="Top" MaxLines="1" Text="999" MaxLength="3" HorizontalAlignment="Right" Width="30" Panel.ZIndex="1" Grid.Row="4"/>
+                    <Label x:Name="label_gearDown_kph" Content="kph" Grid.Column="1" Margin="0,7,49,0" VerticalAlignment="Top" Padding="1,5,5,0" Height="23" HorizontalAlignment="Right" Grid.Row="4"/>
+                    <Label x:Name="label_gearDown_mph" Content="{Binding Text, Converter={StaticResource kphTomphConversion}, ElementName=textBox_gearDown, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" HorizontalAlignment="Right" Margin="0,7,3,0" VerticalAlignment="Top" Padding="1,5,1,0" Height="23" Grid.Row="4"/>
+                    <Label x:Name="label_gearUp" Content="Gear Up Threshold:" Margin="0,32,120,0" Grid.Column="1" Height="26" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Row="4"/>
+                    <TextBox x:Name="textBox_gearUp" Margin="0,34,75,0" TextWrapping="Wrap" Grid.Column="1" Height="23" VerticalAlignment="Top" MaxLines="1" Text="999" MaxLength="3" Width="30" HorizontalAlignment="Right" Panel.ZIndex="1" Grid.Row="4"/>
+                    <Label x:Name="label_gearUp_kph" Content="kph" Grid.Column="1" Margin="0,34,49,0" VerticalAlignment="Top" Padding="1,5,5,0" Height="23" HorizontalAlignment="Right" Grid.Row="4"/>
+                    <Label x:Name="label_gearUp_mph" Content="{Binding Text, Converter={StaticResource kphTomphConversion}, ElementName=textBox_gearUp, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" HorizontalAlignment="Right" Margin="0,34,3,0" VerticalAlignment="Top" Padding="1,5,1,0" Height="23" HorizontalContentAlignment="Right" RenderTransformOrigin="0.435,2.283" Grid.Row="4"/>
+
+                    <Label x:Name="label_debug" Content="" Margin="150,0,0,0" Grid.Column="1" Height="26" VerticalAlignment="Top" Grid.Row="5" HorizontalAlignment="Left"/>
+
+                    <Button x:Name="button_reset" Content="Reset" HorizontalAlignment="Left" Margin="1,0,0,10" Width="75" Grid.Column="1" Click="button_reset_Click" Height="20" VerticalAlignment="Bottom" Grid.Row="5"/>
+                    <Button x:Name="button_help" Content="Help" Grid.Column="1" HorizontalAlignment="Left" Margin="81,0,0,10" Width="75" Height="20" VerticalAlignment="Bottom" Click="button_help_Click" Grid.Row="5"/>
+                    <Button x:Name="button_save" Content="Save Settings" Grid.Column="1" Margin="0,0,10,10" HorizontalAlignment="Right" Width="86" Height="20" VerticalAlignment="Bottom" Click="button_save_Click" Grid.Row="5"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Debug" Background="{x:Null}" Visibility="Collapsed">
+                <Grid Visibility="Collapsed">
+                    <TextBlock x:Name="DEBUG_textBlock_state" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="state" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="DEBUG_textBlock_alt_unit" HorizontalAlignment="Left" Margin="10,25,0,0" TextWrapping="Wrap" Text="alt_unit" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="DEBUG_textBlock_alt_source" HorizontalAlignment="Left" Margin="10,40,0,0" TextWrapping="Wrap" Text="alt_source" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="DEBUG_textBlock_alt" HorizontalAlignment="Left" Margin="10,55,0,0" TextWrapping="Wrap" Text="alt" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="DEBUG_textBlock_mAGL" HorizontalAlignment="Left" Margin="10,70,0,0" TextWrapping="Wrap" Text="mAGL" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="DEBUG_textBlock_sinkRate" HorizontalAlignment="Left" Margin="10,85,0,0" TextWrapping="Wrap" Text="sinkRate" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="DEBUG_textBlock_altitudeWarning" HorizontalAlignment="Left" Margin="10,100,0,0" TextWrapping="Wrap" Text="altAutoDetect" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="DEBUG_textBlock_altAutoDetect" HorizontalAlignment="Left" Margin="10,115,0,0" TextWrapping="Wrap" Text="altAutoDetect" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="DEBUG_textBlock_bingoFuel" HorizontalAlignment="Left" Margin="10,130,0,0" TextWrapping="Wrap" Text="bingoFuel" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="DEBUG_textBlock_bingoFuelNextWarning" HorizontalAlignment="Left" Margin="10,145,0,0" TextWrapping="Wrap" Text="No change" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="DEBUG_textBlock_bingoFuelWarning_count" HorizontalAlignment="Left" Margin="10,160,0,0" TextWrapping="Wrap" Text="No warning" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
         </TabControl>
