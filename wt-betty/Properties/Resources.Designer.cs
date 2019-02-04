@@ -19,7 +19,7 @@ namespace wt_betty.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -57,6 +57,15 @@ namespace wt_betty.Properties {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Altitude {
+            get {
+                return ResourceManager.GetStream("Altitude", resourceCulture);
             }
         }
         
@@ -178,19 +187,17 @@ namespace wt_betty.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ========================
+        ///   Looks up a localized string similar to ************************************************************************************
+        ///This sofware does not modify or comprimise the integrity of any of
+        ///the core War Thunder game files nor it does not have direct access to
+        ///memory or decompile binary files rather It simply reads Json data from
+        ///web client  at http://localhost:8111  which is available when the
+        ///game starts.
+        ///************************************************************************************
+        ///
+        ///========================
         ///Before You Start
-        ///========================
-        ///This software is currently at BETA. As I am the only tester there may be bugs. Please feel free to report any bugs.
-        ///
-        ///========================
-        ///Bitching Betty
-        ///========================
-        ///Source: https://www.wikiwand.com/en/Bitching_Betty
-        ///
-        ///Bitching Betty is a slang term used by some pilots and aircrew (mainly North American), when referring to the voices used by some aircraft warning systems.
-        ///
-        ///The name &quot;Betty&quot; is a generic popular trad [rest of string was truncated]&quot;;.
+        ///============ [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string wt_betty_help {
             get {
