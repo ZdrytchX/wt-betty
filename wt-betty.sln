@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wt-betty", "wt-betty\wt-betty.csproj", "{C20E229C-83FF-4A03-8B57-F11CC1771051}"
 EndProject
@@ -11,12 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C20E229C-83FF-4A03-8B57-F11CC1771051}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C20E229C-83FF-4A03-8B57-F11CC1771051}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C20E229C-83FF-4A03-8B57-F11CC1771051}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{C20E229C-83FF-4A03-8B57-F11CC1771051}.Debug|Any CPU.Build.0 = Release|Any CPU
 		{C20E229C-83FF-4A03-8B57-F11CC1771051}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C20E229C-83FF-4A03-8B57-F11CC1771051}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ECB3F3B8-ED4F-4E4B-B65D-32B85275E629}
 	EndGlobalSection
 EndGlobal

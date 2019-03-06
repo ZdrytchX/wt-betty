@@ -82,10 +82,40 @@ namespace wt_betty {
                 this["EnableGear"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("210")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool pullup
+        {
+            get
+            {
+                return ((bool)(this["pullup"]));
+            }
+            set
+            {
+                this["pullup"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool fuel
+        {
+            get
+            {
+                return ((bool)(this["fuel"]));
+            }
+            set
+            {
+                this["fuel"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("270")]
         public int GearDown {
             get {
                 return ((int)(this["GearDown"]));
@@ -97,7 +127,7 @@ namespace wt_betty {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("250")]
+        [global::System.Configuration.DefaultSettingValueAttribute("290")]
         public int GearUp {
             get {
                 return ((int)(this["GearUp"]));

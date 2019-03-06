@@ -12,8 +12,12 @@ namespace wt_betty
     /// </summary>
     /// NEW BETTY
     ///
-    //todo: fuel warning
+    //todo: fuel warning (Done)
     //todo: eula, help,
+
+    //TODO (ZdrytchX):
+    // read/write json data per-aircraft type into sub folder
+    // Rewrite code in python or lua or something for multi-OS friendliness
 
     public partial class MainWindow : Window
     {
@@ -34,6 +38,8 @@ namespace wt_betty
             cbx_a.IsChecked = User.Default.EnableA;
             cbx_g.IsChecked = User.Default.EnableG;
             cbx_gear.IsChecked = User.Default.EnableGear;
+            cbx_pullup.IsChecked = User.Default.pullup;
+            cbx_fuel.IsChecked = User.Default.fuel;
             slider_A.Value = Convert.ToDouble(User.Default.AoA);
             slider_G.Value = Convert.ToDouble(User.Default.GForce);
             textBox_aSlider.Text = slider_A.Value.ToString();
@@ -143,22 +149,20 @@ namespace wt_betty
                 if (myState.valid == "true")
                 {
 
-
-
                     decimal G = Convert.ToDecimal(myState.Ny, culture);
                     decimal AoA = Convert.ToDecimal(myState.AoA, culture);
-                    decimal Alt = Convert.ToDecimal(myIndicator.altitude_hour, culture);
                     decimal Vspeed = Convert.ToDecimal(myState.Vy, culture);
                     int Fuel = Convert.ToInt32(myState.Mfuel) * 1000;//MFuel and MFuel0 are given in integers
                     int FuelFull = Convert.ToInt32(myState.Mfuel0);
                     int Throttle = Convert.ToInt32(Convert.ToDecimal(myIndicator.throttle, culture) * 100);//TODO throttle variable only avialble in single engine aircraft
                     int gear = Convert.ToInt32(myState.gear);
-                    int IAS = Convert.ToInt32(myState.IAS);//unreliable?
+                    int Alt = Convert.ToInt32(myState.H, culture);
+                    int IAS = Convert.ToInt32(myState.IAS);
                     int flaps = Convert.ToInt32(myState.flaps);
                     label.Content = myIndicator.type;
 
                     //BINGO FUEL
-                    if (Fuel / FuelFull < 103 && Fuel / FuelFull > 100)
+                    if (cbx_fuel.IsChecked == true &&  Fuel / FuelFull < 103 && Fuel / FuelFull > 100 && Throttle > 0)
                     {
                         System.Media.SoundPlayer myPlayer;
                         myPlayer = new System.Media.SoundPlayer(Properties.Resources.Bingo);
@@ -173,7 +177,7 @@ namespace wt_betty
                         stall1 = new System.Media.SoundPlayer(Properties.Resources.AngleOfAttackOverLimit);
                         stall2 = new System.Media.SoundPlayer(Properties.Resources.MaximumAngleOfAttack);
 
-                        if (AoA > User.Default.AoA && AoA < 20 && (myIndicator.gears_lamp == "1" || IAS > 100))
+                        if (AoA > User.Default.AoA && AoA < User.Default.AoA + 10 && (myIndicator.gears_lamp == "1" || IAS > 100))
                         {
                             if (AoA < User.Default.AoA + 2)
                             {
@@ -199,7 +203,7 @@ namespace wt_betty
                         G2 = new System.Media.SoundPlayer(Properties.Resources.GOverLimit);
                         if (G > User.Default.GForce)
                         {
-                            if (G > User.Default.GForce + 4 - User.Default.GForce / (decimal)4)
+                            if (G > User.Default.GForce + 3 - User.Default.GForce / (decimal)3)
                             {
                                 G1.Stop();
                                 G2.PlaySync();
@@ -213,15 +217,15 @@ namespace wt_betty
                         }
                     }
                     
-                    //PULL UP Ground Proximity Warning
-                    if (((0 - Vspeed) * ((IAS - 60) / 60 + (decimal)0.5)) > (Alt + 300))
+                    //PULL UP Ground/sea level Proximity Warning
+                    //desirable to have about 3 seconds before crash
+                    if (cbx_pullup.IsChecked == true && 0 - Vspeed * (2 + (decimal)Math.Pow(IAS / 100, 0.7)) > Alt)
                     {
                         System.Media.SoundPlayer myPlayer;
                         myPlayer = new System.Media.SoundPlayer(Properties.Resources.PullUp);
                         myPlayer.PlaySync();
                     }
-
-                    //=========LOW PRIORITY WARNINGS=======
+                    
                     //GEAR UP/DOWN
                     if (User.Default.EnableGear == true && gear == 100 && IAS > User.Default.GearUp && myIndicator.gears_lamp == "0")
                     {
@@ -301,6 +305,8 @@ namespace wt_betty
                 User.Default.EnableA = cbx_a.IsChecked.Value;
                 User.Default.EnableG = cbx_g.IsChecked.Value;
                 User.Default.EnableGear = cbx_gear.IsChecked.Value;
+                User.Default.pullup = cbx_pullup.IsChecked.Value;
+                User.Default.fuel = cbx_fuel.IsChecked.Value;
                 User.Default.GForce = Convert.ToInt32(slider_G.Value);
                 User.Default.AoA = Convert.ToInt32(slider_A.Value);
                 User.Default.GearDown = Convert.ToInt32(tbx_geardown.Text);
@@ -324,15 +330,19 @@ namespace wt_betty
                 User.Default.EnableA = true;
                 User.Default.EnableG = true;
                 User.Default.EnableGear = true;
+                User.Default.pullup = true;
+                User.Default.fuel = true;
                 User.Default.GForce = 6;
                 User.Default.AoA = 12;
                 User.Default.GearDown = 270;
-                User.Default.GearUp = 270;
+                User.Default.GearUp = 290;
                 User.Default.Save();
 
                 cbx_a.IsChecked = User.Default.EnableA;
                 cbx_g.IsChecked = User.Default.EnableG;
                 cbx_gear.IsChecked = User.Default.EnableGear;
+                cbx_pullup.IsChecked = User.Default.pullup;
+                cbx_fuel.IsChecked = User.Default.fuel;
                 slider_A.Value = Convert.ToDouble(User.Default.AoA);
                 slider_G.Value = Convert.ToDouble(User.Default.GForce);
                 textBox_aSlider.Text = slider_A.Value.ToString();
