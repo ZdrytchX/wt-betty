@@ -15,7 +15,7 @@ To download released versions of this fork see here: https://github.com/ZdrytchX
 
 # ZdrytchX's Changes 2018
 
-Contacts: https://discord.gg/NKMrMxw (@ZdrytchX#4887) or through Github.com/ZdrytchX or through war thunder forums
+Contacts: Discord: @ZdrytchX#4887 or through Github.com/ZdrytchX or through war thunder forums
 
 * Modified "Gear Down" warning from below 500 metres / combat flaps minimum, to 20% throttle, as that's more realistic like used in aircraft like the spitfire. Previous landing warning wouldn't function above 500 metres from sea level which meant people flying on some tank arcade maps wouldn't hear the warning.
 
