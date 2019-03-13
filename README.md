@@ -51,7 +51,12 @@ Added a slider and a bound text box to control the threshold of bingo fuel warni
 Added a global counter to repeat the aural warning and a bound text box to control the length of aural warning.  
 Added a check box for an option to repeat the bingo fuel warning. The rule is a [geometric sequence](https://www.purplemath.com/modules/series3.htm) with a common ratio of 1/2.  
 Say, the threshold of bingo fuel warning is 20%. If the check box for repeat is checked, the same warning would be heard when the remaining fuel percentage reached 10%, 5%, 2% and 1%.  
-  
+
+## Known bug  
+Stall horn stuck in PlayLooping.
+Cause: Within GetData(), code stopped dispatcherTimer1 while stall horn is still in PlayLooping() without reaching Stop().
+Solution: Add Stop() within a try-catch before stopping dispatcherTimer1.
+
 ## Technical limitation  
 **Ground level**  
 An accurate ground level is pivotal for ground proximity warning. However, all altitude info within localhost:8111 are feet/meters above sea level. Without a proper way to get *ground level* or *altitude above ground level* automatically, having the ability to input ground level manually is the best approach as of now.  
