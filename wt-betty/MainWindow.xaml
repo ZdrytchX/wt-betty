@@ -52,7 +52,7 @@
                             <Label x:Name="label_groundLevel_m" Content="m" HorizontalAlignment="Left" Margin="45,3,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.25,0.519" Height="23" Padding="1,5,5,5"/>
                             <Label x:Name="label_groundLevel_ft" Content="{Binding ElementName=textBox_groundLevel_m, Path=Text, Converter={StaticResource mToftConversion}, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="60,3,0,0" VerticalAlignment="Top" Height="23"/>
                             <CheckBox x:Name="cbx_groundLevelAutoDetect" Content="Auto detect" HorizontalAlignment="Right" Margin="0,7,3,0" VerticalAlignment="Top" RenderTransformOrigin="0.835,0.767" ToolTip="Only works if your plane is stationary (e.g. on airfield or crashed)" IsChecked="True" Unchecked="cbx_groundLevelAutoDetect_Unchecked"/>
-                            <Button x:Name="button_setAltitude" Content="Set current ALT as ground lvl" HorizontalAlignment="Left" Margin="5,0,0,3" VerticalAlignment="Bottom" Click="button_setAltitude_Click"/>
+                            <Button x:Name="button_setAltitude_current" Content="Set current ALT as ground lvl" HorizontalAlignment="Left" Margin="5,0,0,3" VerticalAlignment="Bottom" Click="button_setAltitude_current_Click"/>
                             <Button x:Name="button_setAltitude_seaLevel" Content="Sea level" HorizontalAlignment="Right" Margin="0,0,3,3" VerticalAlignment="Bottom" Click="button_setAltitude_seaLevel_Click"/>
                         </Grid>
                     </GroupBox>

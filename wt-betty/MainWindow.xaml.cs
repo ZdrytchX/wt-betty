@@ -54,13 +54,13 @@ namespace wt_betty
             textBox_gearUp.Text = User.Default.GearUp.ToString();
             textBox_gearDown.Text = User.Default.GearDown.ToString();
 
-            dispatcherTimer_getData.Tick += new EventHandler(dispatcherTimer_getData_Tick);
+            dispatcherTimer_getData.Tick += new EventHandler(DispatcherTimer_getData_Tick);
             dispatcherTimer_getData.Interval = new TimeSpan(0, 0, 0, 0, 200);
-            dispatcherTimer_connect.Tick += new EventHandler(dispatcherTimer_connect_Tick);
+            dispatcherTimer_connect.Tick += new EventHandler(DispatcherTimer_connect_Tick);
             dispatcherTimer_connect.Interval = new TimeSpan(0, 0, 5);
         }
 
-        private void dispatcherTimer_connect_Tick(object sender, EventArgs e)
+        private void DispatcherTimer_connect_Tick(object sender, EventArgs e)
         {
             WTConnect();
         }
@@ -110,9 +110,9 @@ namespace wt_betty
             }
         }
 
-        private void dispatcherTimer_getData_Tick(object sender, EventArgs e)
+        private void DispatcherTimer_getData_Tick(object sender, EventArgs e)
         {
-            getData();
+            GetData();
         }
 
         private bool BaglantiVarmi(string adres, int port)
@@ -130,29 +130,35 @@ namespace wt_betty
             }
         }
 
-        private void getData()
+        private void GetData()
         {
             try
             {
                 myIndicator = JsonSerializer._download_serialized_json_data<indicator>(indicatorsurl);
                 myState = JsonSerializer._download_serialized_json_data<state>(statesurl);
 
-                if(myIndicator.type != null)
+                switch (myIndicator.type)
                 {
-                    DEBUG_textBlock_state.Text = $"myState: {myState.valid} | myIndicator: {myIndicator.valid} | type: {myIndicator.type}";
+                    case null:
+                        label.Content = "Cockpit Warning Sounds";
+                        DEBUG_textBlock_state.Text = $"myState: {myState.valid} | myIndicator: {myIndicator.valid} | type: null | NOT UPDATING";
+                        break;
+                    case "dummy_plane":
+                        label.Content = "Cockpit Warning Sounds";
+                        DEBUG_textBlock_state.Text = $"myState: {myState.valid} | myIndicator: {myIndicator.valid} | type: dummy | NOT UPDATING";
+                        break;
+                    default:
+                        DEBUG_textBlock_state.Text = $"myState: {myState.valid} | myIndicator: {myIndicator.valid} | type: {myIndicator.type}";
+                        break;
                 }
-                else
-                {
-                    label.Content = "Cockpit Warning Sounds";
-                    DEBUG_textBlock_state.Text = $"myState: {myState.valid} | myIndicator: {myIndicator.valid} | type: null";
-                }
+
                 if ((myState.valid == "true") && (myIndicator.valid == "true") && (myIndicator.type != "dummy_plane") && (myIndicator.type != null))
                 {
-                    decimal M = Convert.ToDecimal(myState.M, culture);
+                    decimal M = Convert.ToDecimal(myState.M, culture);  // Mach Number
                     decimal G = Convert.ToDecimal(myState.Ny, culture);
                     decimal AoA = Convert.ToDecimal(myState.AoA, culture);
                     decimal Alt;
-                    if(Convert.ToInt32(myState.H) >= 1)
+                    if (Convert.ToInt32(myState.H) >= 1)
                     {
                         double Alt_unknownUnit;
                         if (myIndicator.altitude_10k != null)
@@ -166,11 +172,11 @@ namespace wt_betty
                             Alt_unknownUnit = Convert.ToDouble(myIndicator.altitude_hour, culture);
                         }
                         DEBUG_textBlock_alt_unit.Text = $"alt is imperial";
-                        if (Convert.ToInt32(myState.H)*3 > Alt_unknownUnit)
+                        if (Convert.ToInt32(myState.H) * 3 > Alt_unknownUnit)
                         {
                             // convert alt from meteric to imperial
                             DEBUG_textBlock_alt_unit.Text = $"alt is meteric";
-                            Alt_unknownUnit = Alt_unknownUnit * 3.281;
+                            Alt_unknownUnit = Alt_unknownUnit * 3.2808;
                         }
                         Alt = Convert.ToDecimal(Alt_unknownUnit);
                         DEBUG_textBlock_alt.Text = $"alt: {Alt}ft";
@@ -184,19 +190,19 @@ namespace wt_betty
                     int Fuel = Convert.ToInt32(myState.Mfuel);//MFuel and MFuel0 are given in integers
                     int FuelFull = Convert.ToInt32(myState.Mfuel0);
                     int Throttle = Convert.ToInt32(Convert.ToDecimal(myIndicator.throttle, culture) * 100);//TODO throttle variable only avialble in single engine aircraft
-                    int gear = Convert.ToInt32(myState.gear);
+                    int gear = Convert.ToInt32(myState.gear);   // 0 = gear out, 1 = gear in, 2 retracting/deploying gear
                     int IAS = Convert.ToInt32(myState.IAS);//unreliable?
                     int flaps = Convert.ToInt32(myState.flaps);
                     label.Content = myIndicator.type;
-                    
-                    int mAGL = Convert.ToInt32(Math.Round(Convert.ToInt32(Alt) / 3.2808, 0)) - Convert.ToInt32(textBox_groundLevel_m.Text);
-                    DEBUG_textBlock_mAGL.Text = $"H: {myState.H} alt_hr:{myIndicator.altitude_hour} alt_10k:{myIndicator.altitude_10k} mAGL: {mAGL}";
+
+                    int DEUBG_mAGL = Convert.ToInt32(Math.Round(Convert.ToInt32(Alt) / 3.2808, 0)) - Convert.ToInt32(textBox_groundLevel_m.Text);
+                    DEBUG_textBlock_mAGL.Text = $"H: {myState.H} alt_hr:{myIndicator.altitude_hour} alt_10k:{myIndicator.altitude_10k} mAGL: {DEUBG_mAGL}";
 
                     //PULL UP Ground Proximity Warning
                     if (cbx_pullUp.IsChecked == true)
                     {
                         DEBUG_textBlock_sinkRate.Text = $"sinkRate: {sinkRate}";
-                        if (sinkRate <= -7.62 && isPositiveInteger(textBox_groundLevel_m.Text))
+                        if (sinkRate <= -7.62 && IsPositiveInteger(textBox_groundLevel_m.Text))
                         {
                             int meterAboveGroundLevel = Convert.ToInt32(Math.Round(Convert.ToInt32(Alt) / 3.2808, 0)) - Convert.ToInt32(textBox_groundLevel_m.Text);
                             if (comboBox_planeType.SelectedIndex == 0)
@@ -253,15 +259,14 @@ namespace wt_betty
                                     }
                                 }
                             }
-
                         }
                     }
-                    
+
                     //ALTITUDE Ground Proximity Warning
+                    DEBUG_textBlock_altAutoDetect.Text = $"Throttle: {Throttle} | M: {M}";
                     if (cbx_groundLevelAutoDetect.IsChecked == true)
                     {
-                        DEBUG_textBlock_altAutoDetect.Text = $"Throttle: {Throttle} | M: {M}";
-                        // if player is at airfield
+                        // if player is stationary
                         if (Throttle == 0 && M == 0)
                         {
                             int altitudeAutoDetect = Convert.ToInt32(Math.Round(Convert.ToInt32(Alt) / 3.2808, 0));
@@ -276,11 +281,13 @@ namespace wt_betty
                     }
 
                     //ALTITUDE Ground Proximity Warning
-                    if (cbx_altitude.IsChecked == true && sinkRate >= -7.62 && isNonZeroPositiveInteger(textBox_groundLevel_m.Text))
+                    DEUBG_mAGL = Convert.ToInt32(Math.Round(Convert.ToInt32(Alt) / 3.2808, 0)) - Convert.ToInt32(textBox_groundLevel_m.Text);
+                    DEBUG_textBlock_altitudeWarning.Text = $"mAGL {DEUBG_mAGL} | gear {gear} | gears_lamp {myIndicator.gears_lamp}";
+                    //                                    avoid conflict with pull up warning
+                    if (cbx_altitude.IsChecked == true && sinkRate >= -7.62 && IsNonZeroPositiveInteger(textBox_groundLevel_m.Text))
                     {
                         int meterAboveGroundLevel = Convert.ToInt32(Math.Round(Convert.ToInt32(Alt) / 3.2808, 0)) - Convert.ToInt32(textBox_groundLevel_m.Text);
-                        DEBUG_textBlock_altitudeWarning.Text = $"mAGL {meterAboveGroundLevel} | gear {gear} | gears_lamp {myIndicator.gears_lamp}";
-                        if(cbx_gear.IsChecked == false)
+                        if (cbx_gear.IsChecked == false)
                         {
                             // no conflict with gear down warning
                             if (meterAboveGroundLevel < Convert.ToInt32(textBox_altitudeWarning_m.Text) && gear == 0 && myIndicator.gears_lamp != "0")
@@ -293,7 +300,7 @@ namespace wt_betty
                         else
                         {
                             // avoid conflict with gear down warning
-                            if (isNonZeroPositiveInteger(textBox_gearDown.Text))
+                            if (IsNonZeroPositiveInteger(textBox_gearDown.Text))
                             {
                                 int gearDown = Convert.ToInt32(textBox_gearDown.Text);
                                 if (meterAboveGroundLevel < Convert.ToInt32(textBox_altitudeWarning_m.Text) && gear == 0 && myIndicator.gears_lamp != "0" && IAS > gearDown)
@@ -356,7 +363,7 @@ namespace wt_betty
                     //BINGO FUEL
                     decimal DEBUG_reFuelPer = Math.Round(((decimal)Fuel / (decimal)FuelFull) * 100, 1);
                     DEBUG_textBlock_bingoFuel.Text = $"{Fuel} / {FuelFull} | percentage {DEBUG_reFuelPer} | nextWarning {textBox_bingoFuelPercentage.Text}";
-                    if (cbx_bingoFuel.IsChecked == true && isNonZeroPositiveInteger(textBox_bingoFuelPercentage.Text) && isNonZeroPositiveInteger(textBox_bingoFuelWarningLength.Text))
+                    if (cbx_bingoFuel.IsChecked == true && IsNonZeroPositiveInteger(textBox_bingoFuelPercentage.Text) && IsNonZeroPositiveInteger(textBox_bingoFuelWarningLength.Text) && Throttle != 0 && M != 0)
                     {
                         int bingoFuelPercentage = Convert.ToInt32(textBox_bingoFuelPercentage.Text);
                         int bingoFuelWarningLength = Convert.ToInt32(textBox_bingoFuelWarningLength.Text);
@@ -380,7 +387,7 @@ namespace wt_betty
                             {
                                 if ((nextBingoFuelWarning / 2) > remainingFuelPercentage)
                                 {
-                                    while((nextBingoFuelWarning) > remainingFuelPercentage)
+                                    while ((nextBingoFuelWarning) > remainingFuelPercentage)
                                     {
                                         nextBingoFuelWarning = nextBingoFuelWarning / 2;
                                     }
@@ -397,10 +404,10 @@ namespace wt_betty
 
                     //=========LOW PRIORITY WARNINGS=======
                     //GEAR UP/DOWN
-                    if (cbx_gear.IsChecked == true && isNonZeroPositiveInteger(textBox_gearUp.Text))
+                    if (cbx_gear.IsChecked == true && IsNonZeroPositiveInteger(textBox_gearUp.Text))
                     {
                         int gearUp = Convert.ToInt32(textBox_gearUp.Text);
-                        if(gear == 100 && IAS > gearUp && myIndicator.gears_lamp == "0")
+                        if (gear == 100 && IAS > gearUp && myIndicator.gears_lamp == "0")
                         {
                             System.Media.SoundPlayer myPlayer;
                             myPlayer = new System.Media.SoundPlayer(Properties.Resources.GearUp);
@@ -408,10 +415,12 @@ namespace wt_betty
                         }
                     }
 
-                    if (cbx_gear.IsChecked == true && isNonZeroPositiveInteger(textBox_gearDown.Text))
+                    if (cbx_gear.IsChecked == true && IsNonZeroPositiveInteger(textBox_gearDown.Text) && IsNonZeroPositiveInteger(textBox_groundLevel_m.Text))
                     {
                         int gearDown = Convert.ToInt32(textBox_gearDown.Text);
-                        if ((AoA < 20 || Vspeed > -10) && gear == 0 && IAS < gearDown && IAS > 40 && Throttle < 20 && myIndicator.gears_lamp != "0"/*Alt < 500 && flaps > 20*/)
+                        int meterAboveGroundLevel = Convert.ToInt32(Math.Round(Convert.ToInt32(Alt) / 3.2808, 0)) - Convert.ToInt32(textBox_groundLevel_m.Text);
+                        meterAboveGroundLevel = Convert.ToInt32(Math.Round(Convert.ToInt32(Alt) / 3.2808, 0)) - Convert.ToInt32(textBox_groundLevel_m.Text);
+                        if ((AoA < 20 || Vspeed > -10) && gear == 0 && IAS < gearDown && IAS > 40 && Throttle < 20 && myIndicator.gears_lamp != "0" && meterAboveGroundLevel < 150/*Alt < 500 && flaps > 20*/)
                         {
                             System.Media.SoundPlayer myPlayer;
                             myPlayer = new System.Media.SoundPlayer(Properties.Resources.GearDown);
@@ -421,6 +430,7 @@ namespace wt_betty
                 }
                 else
                 {
+                    StopPlayLooping();
                     dispatcherTimer_getData.Stop();
                     dispatcherTimer_connect.Start();
                 }
@@ -433,7 +443,15 @@ namespace wt_betty
             }
         }
 
-        public bool isPositiveInteger(String input)
+        public void StopPlayLooping()
+        {
+            System.Media.SoundPlayer stall1 = new System.Media.SoundPlayer();
+            System.Media.SoundPlayer stall2 = new System.Media.SoundPlayer();
+            stall1.Stop();
+            stall2.Stop();
+        }
+
+        public bool IsPositiveInteger(String input)
         {
             int testValue;
             if (int.TryParse(input, out testValue))
@@ -453,7 +471,7 @@ namespace wt_betty
             }
         }
 
-        public bool isNonZeroPositiveInteger(String input)
+        public bool IsNonZeroPositiveInteger(String input)
         {
             int testValue;
             if (int.TryParse(input, out testValue))
@@ -505,7 +523,7 @@ namespace wt_betty
             System.Media.SoundPlayer myPlayer2;
             myPlayer1 = new System.Media.SoundPlayer(Properties.Resources.AngleOfAttackOverLimit);
             myPlayer2 = new System.Media.SoundPlayer(Properties.Resources.MaximumAngleOfAttack);
-            myPlayer1.Stop();myPlayer2.Stop();
+            myPlayer1.Stop(); myPlayer2.Stop();
         }
 
         private void button_save_Click(object sender, RoutedEventArgs e)
@@ -591,8 +609,8 @@ namespace wt_betty
             File.WriteAllText(helpFile, Properties.Resources.wt_betty_help);
             System.Diagnostics.Process.Start(helpFile);
         }
-        
-        private void button_setAltitude_Click(object sender, RoutedEventArgs e)
+
+        private void button_setAltitude_current_Click(object sender, RoutedEventArgs e)
         {
             if ((myState.valid == "true") && (myIndicator.valid == "true") && (myIndicator.type != "dummy_plane") && (myIndicator.type != null))
             {
@@ -612,14 +630,14 @@ namespace wt_betty
                     if (Convert.ToInt32(myState.H) * 3 < Alt_unknownUnit)
                     {
                         // convert alt from imperial to meteric
-                        Alt_unknownUnit = Alt_unknownUnit * 0.3048;
+                        Alt_unknownUnit = Alt_unknownUnit / 3.2808;
                         String meter_rounded = String.Format("{0:0}", Math.Truncate(Alt_unknownUnit * 10) / 10);
                         Alt_unknownUnit = Convert.ToDouble(meter_rounded);
                     }
                     Alt = Alt_unknownUnit.ToString();
                     textBox_groundLevel_m.Text = Alt;
 
-                    if(cbx_groundLevelAutoDetect.IsChecked == true)
+                    if (cbx_groundLevelAutoDetect.IsChecked == true)
                     {
                         cbx_groundLevelAutoDetect.IsChecked = false;
                     }
@@ -643,7 +661,7 @@ namespace wt_betty
 
         private void cbx_groundLevelAutoDetect_Unchecked(object sender, RoutedEventArgs e)
         {
-            if(textBox_groundLevel_m.IsEnabled == false)
+            if (textBox_groundLevel_m.IsEnabled == false)
             {
                 textBox_groundLevel_m.IsEnabled = true;
             }
@@ -664,7 +682,7 @@ namespace wt_betty
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                return "???ft";
+                return "ERROR";
             }
         }
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -687,7 +705,7 @@ namespace wt_betty
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                return "???mph";
+                return "ERROR";
             }
         }
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
