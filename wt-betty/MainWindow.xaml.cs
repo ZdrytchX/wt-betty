@@ -274,10 +274,6 @@ namespace wt_betty
                             textBox_groundLevel_m.Text = altitudeAutoDetect.ToString();
                             DEBUG_textBlock_altAutoDetect.Text = $"Plane is stationary at {altitudeAutoDetect}m";
                         }
-                        else
-                        {
-                            textBox_groundLevel_m.IsEnabled = true;
-                        }
                     }
 
                     //ALTITUDE Ground Proximity Warning
@@ -664,6 +660,14 @@ namespace wt_betty
             if (textBox_groundLevel_m.IsEnabled == false)
             {
                 textBox_groundLevel_m.IsEnabled = true;
+            }
+        }
+
+        private void cbx_groundLevelAutoDetect_Checked(object sender, RoutedEventArgs e)
+        {
+            if (textBox_groundLevel_m.IsEnabled == true)
+            {
+                textBox_groundLevel_m.IsEnabled = false;
             }
         }
     }

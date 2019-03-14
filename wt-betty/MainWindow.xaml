@@ -48,11 +48,11 @@
                     <Label x:Name="label_groundLevel" Content="Ground Level" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Margin="0,30,155,0" VerticalAlignment="Top" Padding="1" ToolTip="A proper ground level helps improve the accuracy of PULL UP and ALTITUDE warning" Panel.ZIndex="1"/>
                     <GroupBox Header="Ground Level" HorizontalAlignment="Right" Margin="0,30,5,0" VerticalAlignment="Top" Width="230" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Height="75">
                         <Grid>
-                            <TextBox x:Name="textBox_groundLevel_m" HorizontalAlignment="Left" Height="23" Margin="5,3,0,0" TextWrapping="Wrap" Text="9999" VerticalAlignment="Top" Width="40" MaxLines="1" MaxLength="5"/>
+                            <TextBox x:Name="textBox_groundLevel_m" HorizontalAlignment="Left" Height="23" Margin="5,3,0,0" TextWrapping="Wrap" Text="9999" VerticalAlignment="Top" Width="40" MaxLines="1" MaxLength="5" IsEnabled="False"/>
                             <Label x:Name="label_groundLevel_m" Content="m" HorizontalAlignment="Left" Margin="45,3,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.25,0.519" Height="23" Padding="1,5,5,5"/>
                             <Label x:Name="label_groundLevel_ft" Content="{Binding ElementName=textBox_groundLevel_m, Path=Text, Converter={StaticResource mToftConversion}, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="60,3,0,0" VerticalAlignment="Top" Height="23"/>
-                            <CheckBox x:Name="cbx_groundLevelAutoDetect" Content="Auto detect" HorizontalAlignment="Right" Margin="0,7,3,0" VerticalAlignment="Top" RenderTransformOrigin="0.835,0.767" ToolTip="Only works if your plane is stationary (e.g. on airfield or crashed)" IsChecked="True" Unchecked="cbx_groundLevelAutoDetect_Unchecked"/>
-                            <Button x:Name="button_setAltitude_current" Content="Set current ALT as ground lvl" HorizontalAlignment="Left" Margin="5,0,0,3" VerticalAlignment="Bottom" Click="button_setAltitude_current_Click"/>
+                            <CheckBox x:Name="cbx_groundLevelAutoDetect" Content="Auto detect" HorizontalAlignment="Right" Margin="0,7,10,0" VerticalAlignment="Top" RenderTransformOrigin="0.835,0.767" ToolTip="Only works if your plane is stationary (e.g. on airfield or crashed)" IsChecked="True" Checked="cbx_groundLevelAutoDetect_Checked" Unchecked="cbx_groundLevelAutoDetect_Unchecked"/>
+                            <Button x:Name="button_setAltitude_current" Content="Current attitude" HorizontalAlignment="Right" Margin="0,0,60,3" VerticalAlignment="Bottom" Click="button_setAltitude_current_Click"/>
                             <Button x:Name="button_setAltitude_seaLevel" Content="Sea level" HorizontalAlignment="Right" Margin="0,0,3,3" VerticalAlignment="Bottom" Click="button_setAltitude_seaLevel_Click"/>
                         </Grid>
                     </GroupBox>
@@ -96,6 +96,8 @@
                     <Button x:Name="button_save" Content="Save Settings" Grid.Column="1" Margin="0,0,10,10" HorizontalAlignment="Right" Width="86" Height="20" VerticalAlignment="Bottom" Click="button_save_Click" Grid.Row="5"/>
                 </Grid>
             </TabItem>
+            <!--<TabItem Header="Debug" Background="{x:Null}">-->
+                <!--<Grid>-->
             <TabItem Header="Debug" Background="{x:Null}" Visibility="Collapsed">
                 <Grid Visibility="Collapsed">
                     <TextBlock x:Name="DEBUG_textBlock_state" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="state" VerticalAlignment="Top"/>

@@ -55,14 +55,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="wt-betty.exe" size="2279936">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="wt-betty.exe" size="2279424">
       <assemblyIdentity name="wt-betty" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>+MIrY6zAfW/HNdmGiNYHXVZaIvLnEoQjwC77t5UJHS4=</dsig:DigestValue>
+        <dsig:DigestValue>RNneI7nUWM5sPUGg81KPobAqrTUb5ediGvhY12akWbM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
