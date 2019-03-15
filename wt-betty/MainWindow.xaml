@@ -46,14 +46,14 @@
 
                     <CheckBox x:Name="cbx_pullUp" Content="Pull Up" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="2"/>
                     <Label x:Name="label_groundLevel" Content="Ground Level" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Margin="0,30,155,0" VerticalAlignment="Top" Padding="1" ToolTip="A proper ground level helps improve the accuracy of PULL UP and ALTITUDE warning" Panel.ZIndex="1"/>
-                    <GroupBox Header="Ground Level" HorizontalAlignment="Right" Margin="0,30,5,0" VerticalAlignment="Top" Width="230" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Height="75">
+                    <GroupBox Header="Ground Level" HorizontalAlignment="Right" Margin="0,30,10,0" VerticalAlignment="Top" Width="225" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Height="75">
                         <Grid>
-                            <TextBox x:Name="textBox_groundLevel_m" HorizontalAlignment="Left" Height="23" Margin="5,3,0,0" TextWrapping="Wrap" Text="9999" VerticalAlignment="Top" Width="40" MaxLines="1" MaxLength="5" IsEnabled="False"/>
+                            <TextBox x:Name="textBox_groundLevel_m" HorizontalAlignment="Left" Height="23" Margin="5,3,0,0" TextWrapping="Wrap" Text="9999" VerticalAlignment="Top" Width="40" MaxLines="1" MaxLength="5"/>
                             <Label x:Name="label_groundLevel_m" Content="m" HorizontalAlignment="Left" Margin="45,3,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.25,0.519" Height="23" Padding="1,5,5,5"/>
                             <Label x:Name="label_groundLevel_ft" Content="{Binding ElementName=textBox_groundLevel_m, Path=Text, Converter={StaticResource mToftConversion}, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="60,3,0,0" VerticalAlignment="Top" Height="23"/>
-                            <CheckBox x:Name="cbx_groundLevelAutoDetect" Content="Auto detect" HorizontalAlignment="Right" Margin="0,7,10,0" VerticalAlignment="Top" RenderTransformOrigin="0.835,0.767" ToolTip="Only works if your plane is stationary (e.g. on airfield or crashed)" IsChecked="True" Checked="cbx_groundLevelAutoDetect_Checked" Unchecked="cbx_groundLevelAutoDetect_Unchecked"/>
-                            <Button x:Name="button_setAltitude_current" Content="Current attitude" HorizontalAlignment="Right" Margin="0,0,60,3" VerticalAlignment="Bottom" Click="button_setAltitude_current_Click"/>
-                            <Button x:Name="button_setAltitude_seaLevel" Content="Sea level" HorizontalAlignment="Right" Margin="0,0,3,3" VerticalAlignment="Bottom" Click="button_setAltitude_seaLevel_Click"/>
+                            <CheckBox x:Name="cbx_groundLevelAutoDetect" Content="Auto detect" HorizontalAlignment="Right" Margin="0,7,10,0" VerticalAlignment="Top" RenderTransformOrigin="0.835,0.767" ToolTip="Only works if your plane is stationary (e.g. on airfield or crashed)" IsChecked="True" Unchecked="cbx_groundLevelAutoDetect_Unchecked"/>
+                            <Button x:Name="button_setAltitude_current" Content="Current attitude" HorizontalAlignment="Left" Margin="5,0,0,3" VerticalAlignment="Bottom" Click="button_setAltitude_current_Click"/>
+                            <Button x:Name="button_setAltitude_seaLevel" Content="Sea level" HorizontalAlignment="Left" Margin="100,0,0,3" VerticalAlignment="Bottom" Click="button_setAltitude_seaLevel_Click"/>
                         </Grid>
                     </GroupBox>
 
@@ -97,20 +97,31 @@
                 </Grid>
             </TabItem>
             <!--<TabItem Header="Debug" Background="{x:Null}">-->
-                <!--<Grid>-->
+            <!--<Grid>-->
             <TabItem Header="Debug" Background="{x:Null}" Visibility="Collapsed">
                 <Grid Visibility="Collapsed">
-                    <TextBlock x:Name="DEBUG_textBlock_state" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="state" VerticalAlignment="Top"/>
-                    <TextBlock x:Name="DEBUG_textBlock_alt_unit" HorizontalAlignment="Left" Margin="10,25,0,0" TextWrapping="Wrap" Text="alt_unit" VerticalAlignment="Top"/>
-                    <TextBlock x:Name="DEBUG_textBlock_alt_source" HorizontalAlignment="Left" Margin="10,40,0,0" TextWrapping="Wrap" Text="alt_source" VerticalAlignment="Top"/>
-                    <TextBlock x:Name="DEBUG_textBlock_alt" HorizontalAlignment="Left" Margin="10,55,0,0" TextWrapping="Wrap" Text="alt" VerticalAlignment="Top"/>
-                    <TextBlock x:Name="DEBUG_textBlock_mAGL" HorizontalAlignment="Left" Margin="10,70,0,0" TextWrapping="Wrap" Text="mAGL" VerticalAlignment="Top"/>
-                    <TextBlock x:Name="DEBUG_textBlock_sinkRate" HorizontalAlignment="Left" Margin="10,85,0,0" TextWrapping="Wrap" Text="sinkRate" VerticalAlignment="Top"/>
-                    <TextBlock x:Name="DEBUG_textBlock_altitudeWarning" HorizontalAlignment="Left" Margin="10,100,0,0" TextWrapping="Wrap" Text="altAutoDetect" VerticalAlignment="Top"/>
-                    <TextBlock x:Name="DEBUG_textBlock_altAutoDetect" HorizontalAlignment="Left" Margin="10,115,0,0" TextWrapping="Wrap" Text="altAutoDetect" VerticalAlignment="Top"/>
-                    <TextBlock x:Name="DEBUG_textBlock_bingoFuel" HorizontalAlignment="Left" Margin="10,130,0,0" TextWrapping="Wrap" Text="bingoFuel" VerticalAlignment="Top"/>
-                    <TextBlock x:Name="DEBUG_textBlock_bingoFuelNextWarning" HorizontalAlignment="Left" Margin="10,145,0,0" TextWrapping="Wrap" Text="No change" VerticalAlignment="Top"/>
-                    <TextBlock x:Name="DEBUG_textBlock_bingoFuelWarning_count" HorizontalAlignment="Left" Margin="10,160,0,0" TextWrapping="Wrap" Text="No warning" VerticalAlignment="Top"/>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock x:Name="DEBUG_textBlock_state" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="state" VerticalAlignment="Top" Grid.Row="0"/>
+                    <TextBlock x:Name="DEBUG_textBlock_update" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="update" VerticalAlignment="Top" Grid.Row="1"/>
+                    <TextBlock x:Name="DEBUG_textBlock_mAGL" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="mAGL" VerticalAlignment="Top" Grid.Row="2"/>
+                    <TextBlock x:Name="DEBUG_textBlock_sinkRate" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="sinkRate" VerticalAlignment="Top" Grid.Row="3"/>
+                    <TextBlock x:Name="DEBUG_textBlock_altitudeWarning" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="altitudeWarning" VerticalAlignment="Top" Grid.Row="4"/>
+                    <TextBlock x:Name="DEBUG_textBlock_stationary" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="stationary" VerticalAlignment="Top" Grid.Row="5"/>
+                    <TextBlock x:Name="DEBUG_textBlock_altAutoDetect" HorizontalAlignment="Left" Margin="10,20,0,0" TextWrapping="Wrap" Text="altAutoDetect" VerticalAlignment="Top" Grid.Row="5"/>
+                    <TextBlock x:Name="DEBUG_textBlock_bingoFuel" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="bingoFuel" VerticalAlignment="Top" Grid.Row="6"/>
+                    <TextBlock x:Name="DEBUG_textBlock_bingoFuelNextWarning" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="No change" VerticalAlignment="Top" Grid.Row="7"/>
+                    <TextBlock x:Name="DEBUG_textBlock_bingoFuelWarning_count" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="No warning" VerticalAlignment="Top" Grid.Row="8"/>
                 </Grid>
             </TabItem>
         </TabControl>

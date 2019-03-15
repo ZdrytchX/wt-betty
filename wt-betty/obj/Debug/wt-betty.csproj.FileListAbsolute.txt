@@ -98,13 +98,14 @@ C:\Users\S\Downloads\wt-betty-master\wt-betty\obj\Debug\wt-betty.csproj.CopyComp
 C:\Users\S\Downloads\wt-betty-master\wt-betty\obj\Debug\wt-betty.exe
 C:\Users\S\Downloads\wt-betty-master\wt-betty\obj\Debug\wt-betty.pdb
 C:\Users\S\Downloads\wt-betty-master\wt-betty\obj\Debug\wt-betty.csprojAssemblyReference.cache
-C:\Users\S\Documents\GitHub\wt-betty\wt-betty\bin\Debug\wt-betty.exe
-C:\Users\S\Documents\GitHub\wt-betty\wt-betty\bin\Debug\Newtonsoft.Json.dll
 C:\Users\S\Documents\GitHub\wt-betty\wt-betty\bin\Debug\wt-betty.exe.config
 C:\Users\S\Documents\GitHub\wt-betty\wt-betty\bin\Debug\wt-betty.exe.manifest
 C:\Users\S\Documents\GitHub\wt-betty\wt-betty\bin\Debug\wt-betty.application
+C:\Users\S\Documents\GitHub\wt-betty\wt-betty\bin\Debug\wt-betty.exe
 C:\Users\S\Documents\GitHub\wt-betty\wt-betty\bin\Debug\wt-betty.pdb
+C:\Users\S\Documents\GitHub\wt-betty\wt-betty\bin\Debug\Newtonsoft.Json.dll
 C:\Users\S\Documents\GitHub\wt-betty\wt-betty\bin\Debug\Newtonsoft.Json.xml
+C:\Users\S\Documents\GitHub\wt-betty\wt-betty\obj\Debug\wt-betty.csprojAssemblyReference.cache
 C:\Users\S\Documents\GitHub\wt-betty\wt-betty\obj\Debug\MainWindow.g.cs
 C:\Users\S\Documents\GitHub\wt-betty\wt-betty\obj\Debug\App.g.cs
 C:\Users\S\Documents\GitHub\wt-betty\wt-betty\obj\Debug\wt-betty_Content.g.cs
