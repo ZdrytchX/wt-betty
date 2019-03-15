@@ -2,10 +2,11 @@
 
 ************************************************************************************
 #### 15th March 2019  
-Text box for ground level input is disabled by default.  
-Added check event for ground level auto detect. cbx_groundLevelAutoDetect would now acts as a a toggle swtich for textBox_groundLevel_m.  
+Altitude data now come from myState.H. altitude_hour and altitude_10k are now deprecated.
 Simplified the content of button_setAltitude_current.  
-Both button_setAltitude are now right aligned.  
+Renamed both dispatchTimer to reflect capitalization made to methods eariler.  
+Added a new rule for auto detect ground level in order to fix overestimating the ground level.  
+If the plane is lower than the specified ground level, the ground level would decrease by 100m or the value used by low altitude warning. The lower bound is always 0.
   
 ************************************************************************************
 #### 14th March 2019  
