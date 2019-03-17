@@ -62,17 +62,17 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>3P+Xzj/d3XzkfsdU0uwuxe3sjR/Nowxalh7U2MkxhBU=</dsig:DigestValue>
+        <dsig:DigestValue>5lPyE8Y9eLJGwjMvuxDmSLKEckAOqyRWFoDPAcVzBnE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="wt-betty.exe.config" size="1806">
+  <file name="wt-betty.exe.config" size="1764">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>N43Nsf+WVEBMdNeqVhLd9vz0mqvM7Q7yo9Z6TL2Bh8U=</dsig:DigestValue>
+      <dsig:DigestValue>eWuDpmrctEfSLm0Bc9QlIrfoufVqKGtosGsb7whDzCE=</dsig:DigestValue>
     </hash>
   </file>
   <file name="wt-betty.ico" size="161862">
