@@ -92,7 +92,6 @@
     </ApplicationDefinition>
     <Compile Include="dataModel.cs" />
     <Compile Include="JsonSerializer.cs" />
-    <Compile Include="User.cs" />
     <Compile Include="User.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -202,9 +201,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\wt-betty-help.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Resources\Altitude.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

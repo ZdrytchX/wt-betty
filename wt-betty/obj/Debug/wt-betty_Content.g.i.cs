@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/altitude.wav")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("wt-betty-help.txt")]
 
 

@@ -65,7 +65,7 @@ namespace wt_betty
         [JsonProperty(PropertyName = "gear, %")]
         public string gear { get; set; }
 
-        [JsonProperty(PropertyName = "H, m")]
+        [JsonProperty(PropertyName = "H, m")] //returns 0 for some reason
         public string H { get; set; }
 
         [JsonProperty(PropertyName = "TAS, km/h")]
@@ -112,7 +112,6 @@ namespace wt_betty
         public string compressor_stage_1 { get; set; }
 
         [JsonProperty(PropertyName = "magneto 1")]
-
         public string magneto_1 { get; set; }
 
         [JsonProperty(PropertyName = "power 1, hp")]

@@ -55,33 +55,24 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="wt-betty.exe" size="2279424">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="wt-betty.exe" size="2131456">
       <assemblyIdentity name="wt-betty" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>GsQzv5+tcCM4/TT7FT/iuN4Bg3VwL4ZDHvsKDgMXa88=</dsig:DigestValue>
+        <dsig:DigestValue>R8fNCQ9WMEYH9YJbXjzMICIIBfwQl9rZMfpvQ0/AWEk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="Resources\Altitude.wav" size="127566">
+  <file name="wt-betty.exe.config" size="1764">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>fzFGRYN3blT3cIB9u/I/NyrmIbCE4WXIfw2xxpxt9ss=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="wt-betty.exe.config" size="2588">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>Z5ChgjMz/oiVn88Yf4jl3di5Z7crTLS0Su9eWxzshCw=</dsig:DigestValue>
+      <dsig:DigestValue>eWuDpmrctEfSLm0Bc9QlIrfoufVqKGtosGsb7whDzCE=</dsig:DigestValue>
     </hash>
   </file>
   <file name="wt-betty.ico" size="161862">
