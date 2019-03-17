@@ -51,7 +51,6 @@ namespace wt_betty
             dispatcherTimer1.Interval = new TimeSpan(0, 0, 0, 0, 200);
             dispatcherTimer2.Tick += new EventHandler(dispatcherTimer2_Tick);
             dispatcherTimer2.Interval = new TimeSpan(0, 0, 5);
-
         }
 
         private void dispatcherTimer2_Tick(object sender, EventArgs e)
@@ -65,23 +64,18 @@ namespace wt_betty
             {
                 if (BaglantiVarmi("localhost", 8111))
                 {
-
-
-
                     myState = JsonSerializer._download_serialized_json_data<state>(statesurl);
                     if (myState.valid == "true")
                     {
                         dispatcherTimer2.Stop();
                         dispatcherTimer1.Start();
                         tbx_msgs.Text = ("Running");
-
                     }
                     else if (myState.valid == "false")
                     {
                         dispatcherTimer2.Start();
                         dispatcherTimer1.Stop();
                         tbx_msgs.Text = "Waiting for a flight...";
-
                     }
                     button_start.IsEnabled = false;
                     button_stop.IsEnabled = true;
@@ -96,12 +90,10 @@ namespace wt_betty
 
                     button_start.IsEnabled = true;
                     button_stop.IsEnabled = false;
-
                 }
             }
             catch (Exception ex)
             {
-
                 tbx_msgs.Text = ex.Message;
                 dispatcherTimer1.Stop();
                 dispatcherTimer2.Start();
@@ -109,22 +101,17 @@ namespace wt_betty
                 button_stop.IsEnabled = false;
 
             }
-
-
-
         }
 
         private void dispatcherTimer1_Tick(object sender, EventArgs e)
         {
             getData();
-
         }
 
         private bool BaglantiVarmi(string adres, int port)
         {
             try
             {
-
                 System.Net.Sockets.TcpClient baglanti = new System.Net.Sockets.TcpClient(adres, port);
                 baglanti.Close();
 
@@ -134,7 +121,6 @@ namespace wt_betty
             {
                 return false;
             }
-
         }
 
         private void getData()
@@ -143,9 +129,7 @@ namespace wt_betty
             {
                 myIndicator = JsonSerializer._download_serialized_json_data<indicator>(indicatorsurl);
                 myState = JsonSerializer._download_serialized_json_data<state>(statesurl);
-
-
-
+                
                 if (myState.valid == "true")
                 {
 
@@ -213,7 +197,6 @@ namespace wt_betty
                                 G2.Stop();
                                 G1.PlaySync();
                             }
-
                         }
                     }
                     
@@ -241,14 +224,11 @@ namespace wt_betty
                         myPlayer = new System.Media.SoundPlayer(Properties.Resources.GearDown);
                         myPlayer.PlaySync();
                     }
-
                 }
                 else
                 {
                     dispatcherTimer1.Stop();
                     dispatcherTimer2.Start();
-
-
                 }
             }
             catch (Exception ex)
@@ -256,10 +236,7 @@ namespace wt_betty
                 tbx_msgs.Text = ex.Message;
                 dispatcherTimer1.Stop();
                 dispatcherTimer2.Start();
-
-
             }
-
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -271,7 +248,6 @@ namespace wt_betty
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             WTConnect();
-
         }
 
         private void button_start_Click(object sender, RoutedEventArgs e)
@@ -312,18 +288,15 @@ namespace wt_betty
                 User.Default.GearDown = Convert.ToInt32(tbx_geardown.Text);
                 User.Default.GearUp = Convert.ToInt32(tbx_gearup.Text);
                 User.Default.Save();
-
-
             }
             catch (Exception ex)
             {
 
                 MessageBox.Show(ex.Message);
             }
-
         }
 
-        private void btn_reset_Click(object sender, RoutedEventArgs e)
+        private void button_reset_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -353,12 +326,10 @@ namespace wt_betty
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-
             }
-
         }
 
-        private void btn_help_Click(object sender, RoutedEventArgs e)
+        private void button_help_Click(object sender, RoutedEventArgs e)
         {
             var helpFile = Path.Combine(Path.GetTempPath(), "wt-betty-help.txt");
             File.WriteAllText(helpFile, Properties.Resources.wt_betty_help);
