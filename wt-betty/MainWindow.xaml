@@ -45,15 +45,15 @@
                     <Slider x:Name="slider_A" Margin="127,10,55,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1" TickPlacement="TopLeft" Maximum="22" Minimum="10" SmallChange="1" IsSnapToTickEnabled="True" Value="12"/>
                     <TextBox x:Name="textBox_aSlider" Height="23" Margin="305,5,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1" Text="{Binding ElementName=slider_A, Path=Value, UpdateSourceTrigger=PropertyChanged}"/>
 
-                    <CheckBox x:Name="cbx_pullup" Content="Ground (MSL) Proximity Warning" HorizontalAlignment="Left" Margin="0,5,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="2"/>
+                    <CheckBox x:Name="cbx_pullup" Content="Ground (MSL) Proximity Warning" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="2"/>
 
-                    <CheckBox x:Name="cbx_fuel" Content="Bingo Fuel Warning" HorizontalAlignment="Left" Margin="0,5,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="3"/>
+                    <CheckBox x:Name="cbx_fuel" Content="Bingo Fuel Warning" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="3"/>
 
-                    <CheckBox x:Name="cbx_gear" Content="Gear" HorizontalAlignment="Left" Margin="0,5,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="4"/>
+                    <CheckBox x:Name="cbx_gear" Content="Gear" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="4"/>
                     <Label x:Name="label_gearDown" Content="Gear Down Threshold" Margin="164,5,55,0" Grid.Column="1" Height="26" VerticalAlignment="Top" Grid.Row="4"/>
                     <TextBox x:Name="tbx_geardown" Margin="305,5,10,0" TextWrapping="Wrap" Grid.Column="1" Height="23" VerticalAlignment="Top" Grid.Row="4"/>
-                    <Label x:Name="label_gearUp" Content="Gear Up Threshold" Margin="164,34,55,0" Grid.Column="1" Height="26" VerticalAlignment="Top" Grid.Row="4"/>
-                    <TextBox x:Name="tbx_gearup" Margin="305,34,10,0" TextWrapping="Wrap" Grid.Column="1" Height="23" VerticalAlignment="Top" Grid.Row="4"/>
+                    <Label x:Name="label_gearUp" Content="Gear Up Threshold" Margin="164,35,55,0" Grid.Column="1" Height="26" VerticalAlignment="Top" Grid.Row="4"/>
+                    <TextBox x:Name="tbx_gearup" Margin="305,35,10,0" TextWrapping="Wrap" Grid.Column="1" Height="23" VerticalAlignment="Top" Grid.Row="4"/>
 
                     <Button x:Name="button_save" Content="Save Settings" Grid.Column="1" Grid.Row="5" Margin="0,0,10,10" HorizontalAlignment="Right" Width="86" Height="20" VerticalAlignment="Bottom" Click="button_save_Click"/>
                     <Button x:Name="button_reset" Content="Reset" HorizontalAlignment="Left" Margin="1,0,0,10" Width="75" Grid.Column="1" Grid.Row="5" Click="button_reset_Click" Height="20" VerticalAlignment="Bottom"/>
