@@ -12,7 +12,7 @@ namespace wt_betty {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "14.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.8.0.0")]
     internal sealed partial class User : global::System.Configuration.ApplicationSettingsBase {
         
         private static User defaultInstance = ((User)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new User())));
@@ -25,6 +25,18 @@ namespace wt_betty {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool EnableG {
+            get {
+                return ((bool)(this["EnableG"]));
+            }
+            set {
+                this["EnableG"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("6")]
         public int GForce {
             get {
@@ -32,6 +44,18 @@ namespace wt_betty {
             }
             set {
                 this["GForce"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool EnableA {
+            get {
+                return ((bool)(this["EnableA"]));
+            }
+            set {
+                this["EnableA"] = value;
             }
         }
         
@@ -50,24 +74,24 @@ namespace wt_betty {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool EnableG {
+        public bool EnablePullUp {
             get {
-                return ((bool)(this["EnableG"]));
+                return ((bool)(this["EnablePullUp"]));
             }
             set {
-                this["EnableG"] = value;
+                this["EnablePullUp"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool EnableA {
+        public bool EnableFuel {
             get {
-                return ((bool)(this["EnableA"]));
+                return ((bool)(this["EnableFuel"]));
             }
             set {
-                this["EnableA"] = value;
+                this["EnableFuel"] = value;
             }
         }
         
@@ -82,37 +106,7 @@ namespace wt_betty {
                 this["EnableGear"] = value;
             }
         }
-
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool pullup
-        {
-            get
-            {
-                return ((bool)(this["pullup"]));
-            }
-            set
-            {
-                this["pullup"] = value;
-            }
-        }
-
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool fuel
-        {
-            get
-            {
-                return ((bool)(this["fuel"]));
-            }
-            set
-            {
-                this["fuel"] = value;
-            }
-        }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("270")]
@@ -127,7 +121,7 @@ namespace wt_betty {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("290")]
+        [global::System.Configuration.DefaultSettingValueAttribute("270")]
         public int GearUp {
             get {
                 return ((int)(this["GearUp"]));

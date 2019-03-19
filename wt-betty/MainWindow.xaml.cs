@@ -35,17 +35,17 @@ namespace wt_betty
         public MainWindow()
         {
             InitializeComponent();
-            cbx_a.IsChecked = User.Default.EnableA;
             cbx_g.IsChecked = User.Default.EnableG;
-            cbx_gear.IsChecked = User.Default.EnableGear;
-            cbx_pullup.IsChecked = User.Default.pullup;
-            cbx_fuel.IsChecked = User.Default.fuel;
-            slider_A.Value = Convert.ToDouble(User.Default.AoA);
             slider_G.Value = Convert.ToDouble(User.Default.GForce);
-            textBox_aSlider.Text = slider_A.Value.ToString();
             textBox_gSlider.Text = slider_G.Value.ToString();
-            tbx_gearup.Text = User.Default.GearUp.ToString();
+            cbx_a.IsChecked = User.Default.EnableA;
+            slider_A.Value = Convert.ToDouble(User.Default.AoA);
+            textBox_aSlider.Text = slider_A.Value.ToString();
+            cbx_pullup.IsChecked = User.Default.EnablePullUp;
+            cbx_fuel.IsChecked = User.Default.EnableFuel;
+            cbx_gear.IsChecked = User.Default.EnableGear;
             tbx_geardown.Text = User.Default.GearDown.ToString();
+            tbx_gearup.Text = User.Default.GearUp.ToString();
 
             dispatcherTimer1.Tick += new EventHandler(dispatcherTimer1_Tick);
             dispatcherTimer1.Interval = new TimeSpan(0, 0, 0, 0, 200);
@@ -278,20 +278,19 @@ namespace wt_betty
         {
             try
             {
-                User.Default.EnableA = cbx_a.IsChecked.Value;
                 User.Default.EnableG = cbx_g.IsChecked.Value;
-                User.Default.EnableGear = cbx_gear.IsChecked.Value;
-                User.Default.pullup = cbx_pullup.IsChecked.Value;
-                User.Default.fuel = cbx_fuel.IsChecked.Value;
                 User.Default.GForce = Convert.ToInt32(slider_G.Value);
+                User.Default.EnableA = cbx_a.IsChecked.Value;
                 User.Default.AoA = Convert.ToInt32(slider_A.Value);
+                User.Default.EnablePullUp = cbx_pullup.IsChecked.Value;
+                User.Default.EnableFuel = cbx_fuel.IsChecked.Value;
+                User.Default.EnableGear = cbx_gear.IsChecked.Value;
                 User.Default.GearDown = Convert.ToInt32(tbx_geardown.Text);
                 User.Default.GearUp = Convert.ToInt32(tbx_gearup.Text);
                 User.Default.Save();
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message);
             }
         }
@@ -300,28 +299,28 @@ namespace wt_betty
         {
             try
             {
-                User.Default.EnableA = true;
                 User.Default.EnableG = true;
-                User.Default.EnableGear = true;
-                User.Default.pullup = true;
-                User.Default.fuel = true;
                 User.Default.GForce = 6;
+                User.Default.EnableA = true;
                 User.Default.AoA = 12;
+                User.Default.EnablePullUp = true;
+                User.Default.EnableFuel = true;
+                User.Default.EnableGear = true;
                 User.Default.GearDown = 270;
                 User.Default.GearUp = 290;
                 User.Default.Save();
 
-                cbx_a.IsChecked = User.Default.EnableA;
                 cbx_g.IsChecked = User.Default.EnableG;
-                cbx_gear.IsChecked = User.Default.EnableGear;
-                cbx_pullup.IsChecked = User.Default.pullup;
-                cbx_fuel.IsChecked = User.Default.fuel;
-                slider_A.Value = Convert.ToDouble(User.Default.AoA);
                 slider_G.Value = Convert.ToDouble(User.Default.GForce);
-                textBox_aSlider.Text = slider_A.Value.ToString();
                 textBox_gSlider.Text = slider_G.Value.ToString();
-                tbx_gearup.Text = User.Default.GearUp.ToString();
+                cbx_a.IsChecked = User.Default.EnableA;
+                slider_A.Value = Convert.ToDouble(User.Default.AoA);
+                textBox_aSlider.Text = slider_A.Value.ToString();
+                cbx_pullup.IsChecked = User.Default.EnablePullUp;
+                cbx_fuel.IsChecked = User.Default.EnableFuel;
+                cbx_gear.IsChecked = User.Default.EnableGear;
                 tbx_geardown.Text = User.Default.GearDown.ToString();
+                tbx_gearup.Text = User.Default.GearUp.ToString();
             }
             catch (Exception ex)
             {

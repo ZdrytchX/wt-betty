@@ -2,16 +2,22 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="wt_betty" GeneratedClassName="User">
   <Profiles />
   <Settings>
+    <Setting Name="EnableG" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
     <Setting Name="GForce" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">6</Value>
+    </Setting>
+    <Setting Name="EnableA" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="AoA" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">12</Value>
     </Setting>
-    <Setting Name="EnableG" Type="System.Boolean" Scope="User">
+    <Setting Name="EnablePullUp" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="EnableA" Type="System.Boolean" Scope="User">
+    <Setting Name="EnableFuel" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="EnableGear" Type="System.Boolean" Scope="User">
