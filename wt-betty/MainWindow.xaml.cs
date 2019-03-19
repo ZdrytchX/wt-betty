@@ -4,6 +4,7 @@ using System.Windows.Threading;
 using System.Globalization;
 using System.Windows.Documents;
 using System.IO;
+using System.Windows.Data;
 
 namespace wt_betty
 {
@@ -44,8 +45,8 @@ namespace wt_betty
             cbx_pullup.IsChecked = User.Default.EnablePullUp;
             cbx_fuel.IsChecked = User.Default.EnableFuel;
             cbx_gear.IsChecked = User.Default.EnableGear;
-            tbx_geardown.Text = User.Default.GearDown.ToString();
-            tbx_gearup.Text = User.Default.GearUp.ToString();
+            tbx_gearDown.Text = User.Default.GearDown.ToString();
+            tbx_gearUp.Text = User.Default.GearUp.ToString();
 
             dispatcherTimer1.Tick += new EventHandler(dispatcherTimer1_Tick);
             dispatcherTimer1.Interval = new TimeSpan(0, 0, 0, 0, 200);
@@ -285,8 +286,8 @@ namespace wt_betty
                 User.Default.EnablePullUp = cbx_pullup.IsChecked.Value;
                 User.Default.EnableFuel = cbx_fuel.IsChecked.Value;
                 User.Default.EnableGear = cbx_gear.IsChecked.Value;
-                User.Default.GearDown = Convert.ToInt32(tbx_geardown.Text);
-                User.Default.GearUp = Convert.ToInt32(tbx_gearup.Text);
+                User.Default.GearDown = Convert.ToInt32(tbx_gearDown.Text);
+                User.Default.GearUp = Convert.ToInt32(tbx_gearUp.Text);
                 User.Default.Save();
             }
             catch (Exception ex)
@@ -319,8 +320,8 @@ namespace wt_betty
                 cbx_pullup.IsChecked = User.Default.EnablePullUp;
                 cbx_fuel.IsChecked = User.Default.EnableFuel;
                 cbx_gear.IsChecked = User.Default.EnableGear;
-                tbx_geardown.Text = User.Default.GearDown.ToString();
-                tbx_gearup.Text = User.Default.GearUp.ToString();
+                tbx_gearDown.Text = User.Default.GearDown.ToString();
+                tbx_gearUp.Text = User.Default.GearUp.ToString();
             }
             catch (Exception ex)
             {
@@ -333,6 +334,29 @@ namespace wt_betty
             var helpFile = Path.Combine(Path.GetTempPath(), "wt-betty-help.txt");
             File.WriteAllText(helpFile, Properties.Resources.wt_betty_help);
             System.Diagnostics.Process.Start(helpFile);
+        }
+    }
+
+    public class kphTomphConversion : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            try
+            {
+                int kph = System.Convert.ToInt32(value.ToString());
+                double mph = kph / 1.609;
+                String mph_rounded = String.Format("{0:0}", Math.Truncate(mph * 10) / 10) + "mph";
+                return mph_rounded;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return "ERROR";
+            }
+        }
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return false;
         }
     }
 }
