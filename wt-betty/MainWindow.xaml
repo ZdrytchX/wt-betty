@@ -29,22 +29,35 @@
                         <ColumnDefinition Width="15*"/>
                         <ColumnDefinition Width="593*"/>
                     </Grid.ColumnDefinitions>
-                    <CheckBox x:Name="cbx_g" Content="G-Force" HorizontalAlignment="Left" Margin="1,10,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-                    <CheckBox x:Name="cbx_a" Content="Angle of Attack" HorizontalAlignment="Left" Margin="0,57,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-                    <Slider x:Name="slider_G" Margin="127,10,55,0" VerticalAlignment="Top" Grid.Column="1" TickPlacement="BottomRight" Minimum="4" Value="6" IsSnapToTickEnabled="True" />
-                    <Slider x:Name="slider_A" Margin="127,48,55,0" VerticalAlignment="Top" Grid.Column="1" TickPlacement="TopLeft" Maximum="22" Minimum="10" SmallChange="1" IsSnapToTickEnabled="True" Value="12" />
-                    <TextBox x:Name="textBox_gSlider" Height="23" Margin="305,6,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Text="{Binding ElementName=slider_G, Path=Value, UpdateSourceTrigger=PropertyChanged}"/>
-                    <TextBox x:Name="textBox_aSlider" Height="23" Margin="305,52,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Text="{Binding ElementName=slider_A, Path=Value, UpdateSourceTrigger=PropertyChanged}"/>
-                    <Button x:Name="button_save" Content="Save Settings" Grid.Column="1" Margin="0,0,10,10" HorizontalAlignment="Right" Width="86" Height="20" VerticalAlignment="Bottom" Click="button_save_Click"/>
-                    <CheckBox x:Name="cbx_gear" Content="Gear" HorizontalAlignment="Left" Margin="1,0,0,58" VerticalAlignment="Bottom" Grid.Column="1"/>
-                    <TextBox x:Name="tbx_geardown" Margin="305,0,10,75" TextWrapping="Wrap" Grid.Column="1" Height="23" VerticalAlignment="Bottom" RenderTransformOrigin="0.669,-0.259"/>
-                    <Label x:Name="label1" Content="Gear Down Threshold" Margin="164,0,55,73" Grid.Column="1" Height="26" VerticalAlignment="Bottom"/>
-                    <Label x:Name="label2" Content="Gear Up Threshold" Margin="164,0,55,47" Grid.Column="1" Height="26" VerticalAlignment="Bottom"/>
-                    <TextBox x:Name="tbx_gearup" Margin="305,0,10,47" TextWrapping="Wrap" Grid.Column="1" Height="23" VerticalAlignment="Bottom"/>
-                    <Button x:Name="btn_reset" Content="Reset" HorizontalAlignment="Left" Margin="1,0,0,10" Width="75" Grid.Column="1" Click="btn_reset_Click" Height="20" VerticalAlignment="Bottom"/>
-                    <Button x:Name="btn_help" Content="Help" Grid.Column="1" HorizontalAlignment="Left" Margin="81,0,0,10" Width="75" Height="20" VerticalAlignment="Bottom" Click="btn_help_Click"/>
-                    <CheckBox x:Name="cbx_pullup" Content="Ground (MSL) Proximity Warning" HorizontalAlignment="Left" Margin="1,97,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-                    <CheckBox x:Name="cbx_fuel" Content="Bingo Fuel Warning" HorizontalAlignment="Left" Margin="0,137,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="65"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <CheckBox x:Name="cbx_g" Content="G-Force" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="0"/>
+                    <Slider x:Name="slider_G" Margin="127,10,55,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="0" TickPlacement="BottomRight" Minimum="4" Value="6" IsSnapToTickEnabled="True"/>
+                    <TextBox x:Name="textBox_gSlider" Height="23" Margin="305,5,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Grid.Row="0" Text="{Binding ElementName=slider_G, Path=Value, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <CheckBox x:Name="cbx_a" Content="Angle of Attack" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1"/>
+                    <Slider x:Name="slider_A" Margin="127,10,55,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1" TickPlacement="TopLeft" Maximum="22" Minimum="10" SmallChange="1" IsSnapToTickEnabled="True" Value="12"/>
+                    <TextBox x:Name="textBox_aSlider" Height="23" Margin="305,5,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1" Text="{Binding ElementName=slider_A, Path=Value, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <CheckBox x:Name="cbx_pullup" Content="Ground (MSL) Proximity Warning" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="2"/>
+
+                    <CheckBox x:Name="cbx_fuel" Content="Bingo Fuel Warning" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="3"/>
+
+                    <CheckBox x:Name="cbx_gear" Content="Gear" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="4"/>
+                    <Label x:Name="label_gearDown" Content="Gear Down Threshold" Margin="164,5,55,0" Grid.Column="1" Height="26" VerticalAlignment="Top" Grid.Row="4"/>
+                    <TextBox x:Name="tbx_geardown" Margin="305,5,10,0" TextWrapping="Wrap" Grid.Column="1" Height="23" VerticalAlignment="Top" Grid.Row="4"/>
+                    <Label x:Name="label_gearUp" Content="Gear Up Threshold" Margin="164,34,55,0" Grid.Column="1" Height="26" VerticalAlignment="Top" Grid.Row="4"/>
+                    <TextBox x:Name="tbx_gearup" Margin="305,34,10,0" TextWrapping="Wrap" Grid.Column="1" Height="23" VerticalAlignment="Top" Grid.Row="4"/>
+
+                    <Button x:Name="button_save" Content="Save Settings" Grid.Column="1" Grid.Row="5" Margin="0,0,10,10" HorizontalAlignment="Right" Width="86" Height="20" VerticalAlignment="Bottom" Click="button_save_Click"/>
+                    <Button x:Name="button_reset" Content="Reset" HorizontalAlignment="Left" Margin="1,0,0,10" Width="75" Grid.Column="1" Grid.Row="5" Click="button_reset_Click" Height="20" VerticalAlignment="Bottom"/>
+                    <Button x:Name="button_help" Content="Help" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" Margin="81,0,0,10" Width="75" Height="20" VerticalAlignment="Bottom" Click="button_help_Click"/>
                 </Grid>
             </TabItem>
         </TabControl>
