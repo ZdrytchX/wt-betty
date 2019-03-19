@@ -130,8 +130,8 @@ namespace wt_betty
             {
                 myIndicator = JsonSerializer._download_serialized_json_data<indicator>(indicatorsurl);
                 myState = JsonSerializer._download_serialized_json_data<state>(statesurl);
-                
-                if (myState.valid == "true")
+
+                if ((myState.valid == "true") && (myIndicator.valid == "true") && (myIndicator.type != "dummy_plane") && (myIndicator.type != null))
                 {
 
                     decimal G = Convert.ToDecimal(myState.Ny, culture);
