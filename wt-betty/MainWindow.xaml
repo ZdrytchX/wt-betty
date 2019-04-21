@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:wt_betty"
         mc:Ignorable="d"
-        Title="WT-Betty v1.2 (ZdrytchX's Fork)" Height="342.763" Width="400" ResizeMode="CanMinimize" Closing="Window_Closing" Loaded="Window_Loaded">
+        Title="WT-Betty v1.2 (ZdrytchX's Fork)" Height="343" Width="400" ResizeMode="CanMinimize" Closing="Window_Closing" Loaded="Window_Loaded">
+    <Window.Resources>
+        <local:kphTomphConversion x:Key="kphTomphConversion"/>
+    </Window.Resources>
     <Grid Margin="0,0,11,11">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="129*"/>
@@ -26,8 +29,8 @@
             <TabItem Header="Options" Background="{x:Null}">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="15*"/>
-                        <ColumnDefinition Width="593*"/>
+                        <ColumnDefinition Width="15"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="35"/>
@@ -50,10 +53,14 @@
                     <CheckBox x:Name="cbx_fuel" Content="Bingo Fuel Warning" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="3"/>
 
                     <CheckBox x:Name="cbx_gear" Content="Gear" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="4"/>
-                    <Label x:Name="label_gearDown" Content="Gear Down Threshold" Margin="164,5,55,0" Grid.Column="1" Height="26" VerticalAlignment="Top" Grid.Row="4"/>
-                    <TextBox x:Name="tbx_geardown" Margin="305,5,10,0" TextWrapping="Wrap" Grid.Column="1" Height="23" VerticalAlignment="Top" Grid.Row="4"/>
-                    <Label x:Name="label_gearUp" Content="Gear Up Threshold" Margin="164,34,55,0" Grid.Column="1" Height="26" VerticalAlignment="Top" Grid.Row="4"/>
-                    <TextBox x:Name="tbx_gearup" Margin="305,34,10,0" TextWrapping="Wrap" Grid.Column="1" Height="23" VerticalAlignment="Top" Grid.Row="4"/>
+                    <Label x:Name="label_gearDown" Content="Gear Down Threshold" Margin="105,5,0,0" Grid.Column="1" Grid.Row="4" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                    <TextBox x:Name="tbx_gearDown" Margin="0,5,75,0" TextWrapping="Wrap" Grid.Column="1" Grid.Row="4" Width="30" Height="23" VerticalAlignment="Top" HorizontalAlignment="Right" MaxLines="1" MaxLength="3" Text="999"/>
+                    <Label x:Name="label_gearDown_kph" Content="kph" Grid.Column="1" Grid.Row="4" Margin="0,5,48,0" VerticalAlignment="Top" Padding="1,5,5,0" Height="23" HorizontalAlignment="Right"/>
+                    <Label x:Name="label_gearDown_mph" Content="{Binding Text, Converter={StaticResource kphTomphConversion}, ElementName=tbx_gearDown, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Right" Margin="0,5,3,0" VerticalAlignment="Top" Padding="1,5,1,0" Height="23"/>
+                    <Label x:Name="label_gearUp" Content="Gear Up Threshold" Margin="105,35,0,0" Grid.Column="1" Grid.Row="4" Height="26" VerticalAlignment="Top"/>
+                    <TextBox x:Name="tbx_gearUp" Margin="0,35,75,0" TextWrapping="Wrap" Grid.Column="1" Grid.Row="4" Width="30" Height="23" VerticalAlignment="Top" HorizontalAlignment="Right" MaxLines="1" MaxLength="3" Text="999"/>
+                    <Label x:Name="label_gearUp_kph" Content="kph" Grid.Column="1" Grid.Row="4" Margin="0,35,48,0" VerticalAlignment="Top" Padding="1,5,5,0" Height="23" HorizontalAlignment="Right"/>
+                    <Label x:Name="label_gearUp_mph" Content="{Binding Text, Converter={StaticResource kphTomphConversion}, ElementName=tbx_gearUp, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Right" Margin="0,35,3,0" VerticalAlignment="Top" Padding="1,5,1,0" Height="23"/>
 
                     <Button x:Name="button_save" Content="Save Settings" Grid.Column="1" Grid.Row="5" Margin="0,0,10,10" HorizontalAlignment="Right" Width="86" Height="20" VerticalAlignment="Bottom" Click="button_save_Click"/>
                     <Button x:Name="button_reset" Content="Reset" HorizontalAlignment="Left" Margin="1,0,0,10" Width="75" Grid.Column="1" Grid.Row="5" Click="button_reset_Click" Height="20" VerticalAlignment="Bottom"/>
