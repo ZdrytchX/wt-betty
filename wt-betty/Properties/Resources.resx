@@ -160,4 +160,10 @@
   <data name="wt_betty_help" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\wt-betty-help.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1254</value>
   </data>
+  <data name="DontSink" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dontsink.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SinkRate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sinkrate.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

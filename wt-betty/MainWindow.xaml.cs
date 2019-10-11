@@ -186,7 +186,7 @@ namespace wt_betty
                         System.Media.SoundPlayer G2;
                         G1 = new System.Media.SoundPlayer(Properties.Resources.OverG);
                         G2 = new System.Media.SoundPlayer(Properties.Resources.GOverLimit);
-                        if (G > User.Default.GForce)
+                        if (G > User.Default.GForce || (double)G < -0.4 * User.Default.GForce)
                         {
                             if (G > User.Default.GForce + 3 - User.Default.GForce / (decimal)3)
                             {
@@ -209,21 +209,34 @@ namespace wt_betty
                         myPlayer = new System.Media.SoundPlayer(Properties.Resources.PullUp);
                         myPlayer.PlaySync();
                     }
-                    
-                    //GEAR UP/DOWN
-                    if (User.Default.EnableGear == true && gear == 100 && IAS > User.Default.GearUp && myIndicator.gears_lamp == "0")
-                    {
-                        System.Media.SoundPlayer myPlayer;
-                        myPlayer = new System.Media.SoundPlayer(Properties.Resources.GearUp);
-                        myPlayer.PlaySync();
-                    }
 
-                    if (User.Default.EnableGear == true && (AoA < 20 || Vspeed > -10) && gear == 0 &&
-                        IAS < User.Default.GearDown && IAS > 40 && Throttle < 20 && myIndicator.gears_lamp != "0"/*Alt < 500 && flaps > 20*/)
+                    //GEAR UP/DOWN
+                    if (User.Default.EnableGear == true)
                     {
-                        System.Media.SoundPlayer myPlayer;
-                        myPlayer = new System.Media.SoundPlayer(Properties.Resources.GearDown);
-                        myPlayer.PlaySync();
+                        if (gear == 100 && IAS > User.Default.GearUp && myIndicator.gears_lamp == "0")
+                        {
+                            System.Media.SoundPlayer myPlayer;
+                            myPlayer = new System.Media.SoundPlayer(Properties.Resources.GearUp);
+                            myPlayer.PlaySync();
+                        }
+
+                        if ((AoA < 20 || Vspeed > -10) &&
+                            IAS < User.Default.GearDown && IAS > 40/*Alt < 500 && flaps > 20*/)
+                        {
+                            if (gear == 0 && myIndicator.gears_lamp != "0" && Throttle < 20)
+                            {
+                                System.Media.SoundPlayer myPlayer;
+                                myPlayer = new System.Media.SoundPlayer(Properties.Resources.GearDown);
+                                myPlayer.PlaySync();
+                            }
+                            //Sink rate warning: WT has a global vertical gear speed limit of 10m/s
+                            else if (Vspeed < -8 && Throttle < 60)
+                            {
+                                System.Media.SoundPlayer myPlayer;
+                                myPlayer = new System.Media.SoundPlayer(Properties.Resources.SinkRate);
+                                myPlayer.PlaySync();
+                            }
+                        }
                     }
                 }
                 else
@@ -345,12 +358,13 @@ namespace wt_betty
             {
                 int kph = System.Convert.ToInt32(value.ToString());
                 double mph = kph / 1.609;
-                String mph_rounded = String.Format("{0:0}", Math.Truncate(mph * 10) / 10) + "mph";
-                return mph_rounded;
+                double kts = kph / 1.852;
+                String rounded_result = "(" + String.Format("{0:0}", Math.Truncate(mph * 10) / 10) + "mph / " + String.Format("{0:0}", Math.Truncate(kts * 10) / 10) +"kts)";
+                return rounded_result;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                //MessageBox.Show(ex.Message); //Annoying to have in a practical sense, keep it out of the builds
                 return "ERROR";
             }
         }
