@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:wt_betty"
         mc:Ignorable="d"
-        Title="WT-Betty v1.3 (ZdrytchX's Fork)" Height="380.333" Width="400" ResizeMode="CanMinimize" Closing="Window_Closing" Loaded="Window_Loaded">
+        Title="WT-Betty v1.4 (ZdrytchX's Fork)" Height="380.333" Width="400" ResizeMode="CanMinimize" Closing="Window_Closing" Loaded="Window_Loaded">
     <Window.Resources>
         <local:kphTomphConversion x:Key="kphTomphConversion"/>
     </Window.Resources>
