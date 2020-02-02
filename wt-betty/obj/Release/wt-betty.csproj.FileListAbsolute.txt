@@ -56,7 +56,6 @@ E:\Documents\pythoncode\wt-betty\wt-betty\obj\Release\wt-betty.application
 E:\Documents\pythoncode\wt-betty\wt-betty\obj\Release\wt-betty.csproj.CopyComplete
 E:\Documents\pythoncode\wt-betty\wt-betty\obj\Release\wt-betty.exe
 E:\Documents\pythoncode\wt-betty\wt-betty\obj\Release\wt-betty.pdb
-E:\Documents\pythoncode\wt-betty2\wt-betty\obj\Release\wt-betty.csprojAssemblyReference.cache
 E:\Documents\pythoncode\wt-betty2\wt-betty\obj\Release\MainWindow.g.cs
 E:\Documents\pythoncode\wt-betty2\wt-betty\obj\Release\App.g.cs
 E:\Documents\pythoncode\wt-betty2\wt-betty\obj\Release\GeneratedInternalTypeHelper.g.cs

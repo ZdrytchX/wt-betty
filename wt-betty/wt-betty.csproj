@@ -137,11 +137,14 @@
     <None Include="User.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>User.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </None>
     <None Include="wt-betty_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AngleOfAttackOverLimit.wav" />
@@ -207,6 +210,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\sinkrate.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OverSpeed.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

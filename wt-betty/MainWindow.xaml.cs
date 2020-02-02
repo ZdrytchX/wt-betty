@@ -42,6 +42,8 @@ namespace wt_betty
             cbx_a.IsChecked = User.Default.EnableA;
             slider_A.Value = Convert.ToDouble(User.Default.AoA);
             textBox_aSlider.Text = slider_A.Value.ToString();
+            cbx_overSpeed.IsChecked = User.Default.EnableOverSpeed;
+            tbx_overSpeed.Text = User.Default.OverSpeed.ToString();
             cbx_pullup.IsChecked = User.Default.EnablePullUp;
             cbx_fuel.IsChecked = User.Default.EnableFuel;
             cbx_gear.IsChecked = User.Default.EnableGear;
@@ -210,6 +212,14 @@ namespace wt_betty
                         myPlayer.PlaySync();
                     }
 
+                    //Overspeed
+                    if (cbx_overSpeed.IsChecked == true && IAS > User.Default.OverSpeed)
+                    {
+                        System.Media.SoundPlayer myPlayer;
+                        myPlayer = new System.Media.SoundPlayer(Properties.Resources.OverSpeed);
+                        myPlayer.PlaySync();
+                    }
+
                     //GEAR UP/DOWN
                     if (User.Default.EnableGear == true)
                     {
@@ -297,6 +307,8 @@ namespace wt_betty
                 User.Default.EnableA = cbx_a.IsChecked.Value;
                 User.Default.AoA = Convert.ToInt32(slider_A.Value);
                 User.Default.EnablePullUp = cbx_pullup.IsChecked.Value;
+                User.Default.EnableOverSpeed = cbx_overSpeed.IsChecked.Value;
+                User.Default.OverSpeed = Convert.ToInt32(tbx_overSpeed.Text);
                 User.Default.EnableFuel = cbx_fuel.IsChecked.Value;
                 User.Default.EnableGear = cbx_gear.IsChecked.Value;
                 User.Default.GearDown = Convert.ToInt32(tbx_gearDown.Text);
@@ -320,6 +332,8 @@ namespace wt_betty
                 User.Default.EnablePullUp = true;
                 User.Default.EnableFuel = true;
                 User.Default.EnableGear = true;
+                User.Default.EnableOverSpeed = true;
+                User.Default.OverSpeed = 820;
                 User.Default.GearDown = 270;
                 User.Default.GearUp = 290;
                 User.Default.Save();
@@ -329,6 +343,8 @@ namespace wt_betty
                 textBox_gSlider.Text = slider_G.Value.ToString();
                 cbx_a.IsChecked = User.Default.EnableA;
                 slider_A.Value = Convert.ToDouble(User.Default.AoA);
+                tbx_overSpeed.Text = User.Default.OverSpeed.ToString();
+                cbx_overSpeed.IsChecked = User.Default.EnableOverSpeed;
                 textBox_aSlider.Text = slider_A.Value.ToString();
                 cbx_pullup.IsChecked = User.Default.EnablePullUp;
                 cbx_fuel.IsChecked = User.Default.EnableFuel;
@@ -362,7 +378,7 @@ namespace wt_betty
                 String rounded_result = "(" + String.Format("{0:0}", Math.Truncate(mph * 10) / 10) + "mph / " + String.Format("{0:0}", Math.Truncate(kts * 10) / 10) +"kts)";
                 return rounded_result;
             }
-            catch (Exception ex)
+            catch (Exception/* ex*/)
             {
                 //MessageBox.Show(ex.Message); //Annoying to have in a practical sense, keep it out of the builds
                 return "ERROR";

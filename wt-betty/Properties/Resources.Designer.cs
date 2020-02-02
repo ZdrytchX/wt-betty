@@ -162,6 +162,15 @@ namespace wt_betty.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
+        internal static System.IO.UnmanagedMemoryStream OverSpeed {
+            get {
+                return ResourceManager.GetStream("OverSpeed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
         internal static System.IO.UnmanagedMemoryStream PullUp {
             get {
                 return ResourceManager.GetStream("PullUp", resourceCulture);

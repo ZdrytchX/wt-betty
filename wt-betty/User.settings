@@ -29,5 +29,11 @@
     <Setting Name="GearUp" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">270</Value>
     </Setting>
+    <Setting Name="EnableOverSpeed" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="OverSpeed" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">820</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

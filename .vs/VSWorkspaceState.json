@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\wt-betty",
+    "\\wt-betty\\Properties",
+    "\\wt-betty\\Resources"
   ],
-  "SelectedNode": "\\wt-betty.sln",
+  "SelectedNode": "\\wt-betty\\MainWindow.xaml",
   "PreviewInSolutionExplorer": false
 }
