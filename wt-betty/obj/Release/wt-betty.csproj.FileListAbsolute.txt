@@ -78,3 +78,4 @@ E:\Documents\pythoncode\wt-betty2\wt-betty\obj\Release\wt-betty.csproj.CoreCompi
 E:\Documents\pythoncode\wt-betty2\wt-betty\obj\Release\wt-betty.exe.manifest
 E:\Documents\pythoncode\wt-betty2\wt-betty\obj\Release\wt-betty.application
 E:\Documents\pythoncode\wt-betty2\wt-betty\obj\Release\wt-betty.csproj.CopyComplete
+E:\Documents\pythoncode\wt-betty2\wt-betty\obj\Release\wt-betty.csprojAssemblyReference.cache

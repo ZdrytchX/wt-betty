@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:wt_betty"
         mc:Ignorable="d"
-        Title="WT-Betty v1.4 (ZdrytchX's Fork)" Height="380.333" Width="400" ResizeMode="CanMinimize" Closing="Window_Closing" Loaded="Window_Loaded">
+        Title="WT-Betty v1.4a (ZdrytchX's Fork)" Height="380.333" Width="400" ResizeMode="CanMinimize" Closing="Window_Closing" Loaded="Window_Loaded">
     <Window.Resources>
         <local:kphTomphConversion x:Key="kphTomphConversion"/>
     </Window.Resources>
@@ -42,11 +42,11 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <CheckBox x:Name="cbx_g" Content="G-Force" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Grid.Column="2" Grid.Row="0"/>
-                    <Slider x:Name="slider_G" Margin="127,10,55,0" VerticalAlignment="Top" Grid.Column="2" Grid.Row="0" TickPlacement="BottomRight" Minimum="4" Value="6" IsSnapToTickEnabled="True"/>
+                    <Slider x:Name="slider_G" Margin="127,10,55,0" VerticalAlignment="Top" Grid.Column="2" Grid.Row="0" TickPlacement="BottomRight" Minimum="2" Maximum="18" Value="6" IsSnapToTickEnabled="True"/>
                     <TextBox x:Name="textBox_gSlider" Height="23" Margin="305,5,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="2" Grid.Row="0" Text="{Binding ElementName=slider_G, Path=Value, UpdateSourceTrigger=PropertyChanged}"/>
 
                     <CheckBox x:Name="cbx_a" Content="Angle of Attack" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Grid.Column="2" Grid.Row="1"/>
-                    <Slider x:Name="slider_A" Margin="127,10,55,0" VerticalAlignment="Top" Grid.Column="2" Grid.Row="1" TickPlacement="TopLeft" Maximum="22" Minimum="10" SmallChange="1" IsSnapToTickEnabled="True" Value="12"/>
+                    <Slider x:Name="slider_A" Margin="127,10,55,0" VerticalAlignment="Top" Grid.Column="2" Grid.Row="1" TickPlacement="TopLeft" Maximum="32" Minimum="6" SmallChange="1" IsSnapToTickEnabled="True" Value="12"/>
                     <TextBox x:Name="textBox_aSlider" Height="23" Margin="305,5,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="2" Grid.Row="1" Text="{Binding ElementName=slider_A, Path=Value, UpdateSourceTrigger=PropertyChanged}"/>
 
                     <CheckBox x:Name="cbx_pullup" Content="Ground (MSL) Proximity Warning" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Grid.Column="2" Grid.Row="2"/>

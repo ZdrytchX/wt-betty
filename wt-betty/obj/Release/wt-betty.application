@@ -4,17 +4,17 @@
   <description asmv2:publisher="wt-betty" asmv2:product="wt-betty" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <deployment install="true" mapFileExtensions="true" />
   <compatibleFrameworks xmlns="urn:schemas-microsoft-com:clickonce.v2">
-    <framework targetVersion="4.5.2" profile="Full" supportedRuntime="4.0.30319" />
+    <framework targetVersion="4.6.1" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="wt-betty.exe.manifest" size="4626">
+    <dependentAssembly dependencyType="install" codebase="wt-betty.exe.manifest" size="4627">
       <assemblyIdentity name="wt-betty.exe" version="1.0.0.1" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>A6hP7rHCl30yoo5Iv6+/Sf1o39bBuaIqOCohwtjuT2Y=</dsig:DigestValue>
+        <dsig:DigestValue>YDPHtzDBtUwYfxvvyYTskr/TlKTFxyr0TwNMpb29M8I=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

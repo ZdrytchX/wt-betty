@@ -126,6 +126,44 @@ namespace wt_betty
             }
         }
 
+        /// <summary>
+        /// JSON saver
+        /// </summary>
+        ///
+        /*
+        private void saveToJSON()
+        {
+            //TODO
+            try
+            {
+                myState = JsonSerializer._download_serialized_json_data<state>(statesurl);
+                if ((myState.valid == "true") && (myIndicator.valid == "true") && (myIndicator.type != "dummy_plane") && (myIndicator.type != null))
+                {
+                    //using (StreamReader file = File.OpenText(myIndicator.type + ".json"));
+                    
+                    //string json = File.ReadAllText("myobjects.json");
+                    //var playerList = JsonConvert.DeserializeObject<List<Player>>(json);
+                    
+                    string filePath = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, @"..\..\..\")) + @"Data\Country.json";
+                    
+                    string _countryJson = File.ReadAllText(filePath);
+                    
+                    //var _country = JsonConvert.DeserializeObject<List<Country>>(_countryJson);
+                    
+
+                    //save file thing here
+                    //File.WriteAllText("myobjects.json", JsonConvert.SerializeObject(playerList));
+                }
+            }
+            catch (Exception ex)
+            {
+                tbx_msgs.Text = ex.Message;
+                dispatcherTimer1.Stop();
+                dispatcherTimer2.Start();
+            }
+        }
+    */
+
         private void getData()
         {
             try
@@ -146,6 +184,11 @@ namespace wt_betty
                     int Alt = Convert.ToInt32(myState.H, culture);
                     int IAS = Convert.ToInt32(myState.IAS);
                     int flaps = Convert.ToInt32(myState.flaps);
+
+                    Console.Write(myState.AoS);
+                    //tbx_msgs.Text = myState.AoS;
+                    decimal AoS = Convert.ToDecimal(myState.AoS);
+                    int TAS = Convert.ToInt32(myState.TAS);
                     label.Content = myIndicator.type;
 
                     //BINGO FUEL
@@ -164,9 +207,9 @@ namespace wt_betty
                         stall1 = new System.Media.SoundPlayer(Properties.Resources.AngleOfAttackOverLimit);
                         stall2 = new System.Media.SoundPlayer(Properties.Resources.MaximumAngleOfAttack);
 
-                        if (AoA > User.Default.AoA && AoA < User.Default.AoA + 10 && (myIndicator.gears_lamp == "1" || IAS > 100))
+                        if (AoA > User.Default.AoA * 0.8 && AoA < User.Default.AoA + 10 && (myIndicator.gears_lamp == "1" || IAS > 100))
                         {
-                            if (AoA < User.Default.AoA + 2)
+                            if (AoA < User.Default.AoA)
                             {
                                 stall1.Stop();
                                 stall2.PlayLooping();
@@ -233,6 +276,9 @@ namespace wt_betty
                         if ((AoA < 20 || Vspeed > -10) &&
                             IAS < User.Default.GearDown && IAS > 40/*Alt < 500 && flaps > 20*/)
                         {
+                            float Deg2Rad = (float)(Math.PI / 180f);
+                            float driftSpeed = (float)(TAS * Math.Sin(Deg2Rad * (float)AoS));
+
                             if (gear == 0 && myIndicator.gears_lamp != "0" && Throttle < 20)
                             {
                                 System.Media.SoundPlayer myPlayer;
@@ -244,6 +290,21 @@ namespace wt_betty
                             {
                                 System.Media.SoundPlayer myPlayer;
                                 myPlayer = new System.Media.SoundPlayer(Properties.Resources.SinkRate);
+                                myPlayer.PlaySync();
+                            }
+                            //drift april fools
+                            else if (driftSpeed < -50)
+                            {
+                                tbx_msgs.Text = "ドリフト! ";
+                                System.Media.SoundPlayer myPlayer;
+                                myPlayer = new System.Media.SoundPlayer(Properties.Resources.Running90s);
+                                myPlayer.PlaySync();
+                            }
+                            else if (driftSpeed > 50)
+                            {
+                                tbx_msgs.Text = "ドリフト! ";
+                                System.Media.SoundPlayer myPlayer;
+                                myPlayer = new System.Media.SoundPlayer(Properties.Resources.ManuelGGG);
                                 myPlayer.PlaySync();
                             }
                         }

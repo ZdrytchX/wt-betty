@@ -81,15 +81,6 @@ namespace wt_betty.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream BingoFuel {
-            get {
-                return ResourceManager.GetStream("BingoFuel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
-        /// </summary>
         internal static System.IO.UnmanagedMemoryStream DontSink {
             get {
                 return ResourceManager.GetStream("DontSink", resourceCulture);
@@ -120,6 +111,15 @@ namespace wt_betty.Properties {
         internal static System.IO.UnmanagedMemoryStream GOverLimit {
             get {
                 return ResourceManager.GetStream("GOverLimit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream ManuelGGG {
+            get {
+                return ResourceManager.GetStream("ManuelGGG", resourceCulture);
             }
         }
         
@@ -180,18 +180,18 @@ namespace wt_betty.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream SinkRate {
+        internal static System.IO.UnmanagedMemoryStream Running90s {
             get {
-                return ResourceManager.GetStream("SinkRate", resourceCulture);
+                return ResourceManager.GetStream("Running90s", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream stallhorn {
+        internal static System.IO.UnmanagedMemoryStream SinkRate {
             get {
-                return ResourceManager.GetStream("stallhorn", resourceCulture);
+                return ResourceManager.GetStream("SinkRate", resourceCulture);
             }
         }
         

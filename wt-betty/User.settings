@@ -12,7 +12,7 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="AoA" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">12</Value>
+      <Value Profile="(Default)">8</Value>
     </Setting>
     <Setting Name="EnablePullUp" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -34,6 +34,18 @@
     </Setting>
     <Setting Name="OverSpeed" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">820</Value>
+    </Setting>
+    <Setting Name="AoA2" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">11</Value>
+    </Setting>
+    <Setting Name="MaximumDrift1" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">38</Value>
+    </Setting>
+    <Setting Name="MaximumDrift2" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">55</Value>
+    </Setting>
+    <Setting Name="Setting" Type="System.Collections.ArrayList" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>
